@@ -1,0 +1,25 @@
+<form  novalidate (ngSubmit)="onSubmit()">
+  <mat-card >
+    <mat-card-header>
+      <mat-card-title>Envoyer un fichier</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+
+
+	<div>
+		<label for="user-message">Un petit message: </label>
+		<input id="user-message" [(ngModel)]="userMessage" placeholder="userMessage">
+	</div>
+
+    <input type="file" (change)="uploadFile($event)" />
+    <div>{{ uploadPercent | async }}</div>
+    <a [href]="downloadURL | async">{{ downloadURL | async }}</a>
+
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit">Submit</button>
+    </mat-card-actions>
+  </mat-card>
+</form>
+
+

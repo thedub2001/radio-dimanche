@@ -1,0 +1,46 @@
+<table mat-table *ngFor="let element of elements">
+  <ng-container matColumnDef="name">
+    <th mat-header-cell > Name </th>
+    <td mat-cell > {{element.name}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="dateOfBirth">
+    <th mat-header-cell > Date of Birth </th>
+    <td mat-cell > {{element.date | date}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="address">
+    <th mat-header-cell > Address </th>
+    <td mat-cell > {{element.comment}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="details">
+    <th mat-header-cell > Details </th>
+    <td mat-cell >
+      <button mat-icon-button color="primary" >
+          <mat-icon class="mat-18">reorder</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="update">
+      <th mat-header-cell > Update </th>
+      <td mat-cell >
+        <button mat-icon-button color="accent" >
+            <mat-icon class="mat-18">system_update</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+        <th mat-header-cell > Delete </th>
+        <td mat-cell >
+          <button mat-icon-button color="warn" >
+              <mat-icon class="mat-18">delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+  <tr mat-header-row ></tr>
+  <tr mat-row ></tr>
+</table>

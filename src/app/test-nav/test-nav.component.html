@@ -1,0 +1,43 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      mode="side"
+      opened="false" class="mat-elevation-z10">
+    <mat-toolbar style="background-color: #e8e8e8;" >
+        Coucou !
+    </mat-toolbar>
+
+    <mat-nav-list>
+
+
+      <h2 matSubheader> Sous-section </h2>
+
+<!--workaround to automatic selection of the first item of the nav-list-->
+      <a mat-list-item routerLink="/" style="height: 0;"></a>
+
+      <a mat-list-item routerLink="/dimanche">
+        <mat-icon matListIcon> radio </mat-icon>
+         Radio Dimanche</a>
+
+
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary" class="mat-elevation-z10">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        >
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>Radio Dimanche</span>
+    </mat-toolbar>
+
+
+    <!-- Add Content Here -->
+
+    <router-outlet></router-outlet>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>

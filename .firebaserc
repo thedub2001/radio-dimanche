@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "radio-dimanche": {
+      "hosting": {
+        "radio-dimanche": [
+          "radio-dimanche"
+        ]
+      }
+    }
+  }
+}
