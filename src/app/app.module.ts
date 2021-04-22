@@ -42,6 +42,9 @@ import { DialogFileContent } from './taradio/taradio.component';
 import { DialogRecordContent } from './taradio/taradio.component';
 import { TrackListComponent } from './track-list/track-list.component';
 
+import { DialogSigninContent } from './test-nav/test-nav.component';
+import { TaskListComponent } from './task-list/task-list.component';
+
 
 @NgModule({
   imports: [
@@ -91,7 +94,9 @@ import { TrackListComponent } from './track-list/track-list.component';
     DialogWriteContent,
     DialogFileContent,
     DialogRecordContent,
-    TrackListComponent
+    TrackListComponent,
+    TaskListComponent,
+    DialogSigninContent
   ],
     entryComponents: [
     TaradioComponent

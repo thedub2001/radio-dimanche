@@ -1,0 +1,17 @@
+<h1>Task List</h1>
+<ul>
+    <li *ngFor="let data of fsData">
+        <p style="display: inline;">Task: {{data.task}}</p>
+        <button (click)="removeTask(data)" >remove task</button>
+    </li>
+</ul>
+<hr>
+<h2>Add Task</h2>
+    <form [formGroup]="taskForm" (ngSubmit)="addTask(taskForm)">
+        <label for="task">Task</label>
+        <input type="text" name="task" formControlName="task">
+        <button>add</button>
+    </form>
+    <h4 *ngIf="addFailed" style="color: #f00;">Invalid task. Please try again.</h4>
+<hr>
+<button (click)="signOut()">sign out</button>

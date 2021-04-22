@@ -22,7 +22,7 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar color="primary" class="mat-elevation-z10">
+    <mat-toolbar color="primary" class="mat-elevation-z10" style="justify-content: space-between;">
       <button
         type="button"
         aria-label="Toggle sidenav"
@@ -32,6 +32,28 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span>Radio Dimanche</span>
+      <h4 *ngIf="signedIn;else deconnecte" style="color: #f00;">Authentifié</h4>
+      <ng-template #deconnecte>Déconnecté</ng-template>
+
+      <button *ngIf="!signedIn"
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="openSigninDialog()"
+        >
+        <mat-icon aria-label="login icon">login</mat-icon>
+      </button>
+
+      <button *ngIf="signedIn"
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="signOut()"
+        >
+        <mat-icon aria-label="login icon">logout</mat-icon>
+      </button>
+
+
     </mat-toolbar>
 
 
