@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatSliderModule } from '@angular/material/slider';
@@ -41,13 +40,13 @@ import { environment } from '../environments/environment';
 import { TaradioComponent } from './taradio/taradio.component';
 import { TrackListComponent } from './track-list/track-list.component';
 
-import { DialogSigninContent } from './test-nav/test-nav.component';
 import { TaskListComponent } from './task-list/task-list.component';
 import { DialogTableComponent } from './dialog-table/dialog-table.component';
 import { DialogTableBoxComponent } from './dialog-table-box/dialog-table-box.component';
 import { DialogUploadComponent } from './dialog-upload/dialog-upload.component';
 import { DialogWriteComponent } from './dialog-write/dialog-write.component';
 import { DialogRecordComponent } from './dialog-record/dialog-record.component';
+import { DialogSignInComponent } from './dialog-sign-in/dialog-sign-in.component';
 
 
 @NgModule({
@@ -56,14 +55,6 @@ import { DialogRecordComponent } from './dialog-record/dialog-record.component';
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-
-/*    // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
-    // and returns simulated server responses.
-    // Remove it when a real server is ready to receive requests.
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false }
-    ),*/
-
     BrowserAnimationsModule,
     MatSliderModule,
     MatInputModule,
@@ -98,12 +89,12 @@ import { DialogRecordComponent } from './dialog-record/dialog-record.component';
     TaradioComponent,
     TrackListComponent,
     TaskListComponent,
-    DialogSigninContent,
     DialogTableComponent,
     DialogTableBoxComponent,
     DialogUploadComponent,
     DialogWriteComponent,
-    DialogRecordComponent
+    DialogRecordComponent,
+    DialogSignInComponent
   ],
     entryComponents: [
     TaradioComponent
