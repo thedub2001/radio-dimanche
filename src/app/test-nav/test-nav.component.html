@@ -32,10 +32,8 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span>Radio Dimanche</span>
-      <h4 *ngIf="signedIn;else deconnecte" style="color: #f00;">Authentifié</h4>
-      <ng-template #deconnecte>Déconnecté</ng-template>
 
-      <button *ngIf="!signedIn"
+      <button
         type="button"
         aria-label="Toggle sidenav"
         mat-icon-button
@@ -44,7 +42,7 @@
         <mat-icon aria-label="login icon">login</mat-icon>
       </button>
 
-      <button *ngIf="signedIn"
+      <button 
         type="button"
         aria-label="Toggle sidenav"
         mat-icon-button
@@ -55,7 +53,6 @@
 
 
     </mat-toolbar>
-
 
     <!-- Add Content Here -->
 

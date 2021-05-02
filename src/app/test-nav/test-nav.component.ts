@@ -1,6 +1,6 @@
-import { Component, OnInit, OnDestroy, OnChanges  } from '@angular/core';
+import { Component, OnInit, OnDestroy  } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Observable } from 'rxjs';
+import { Observable, of} from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
@@ -10,15 +10,13 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 
 
+
 @Component({
   selector: 'app-test-nav',
   templateUrl: './test-nav.component.html',
   styleUrls: ['./test-nav.component.css']
 })
-export class TestNavComponent {
-
-    public userAuth: Subscription;
-    public signedIn: boolean;
+export class TestNavComponent implements OnInit{
 
 
 
@@ -33,6 +31,9 @@ export class TestNavComponent {
   			  public fs: FirebaseService,
 			 ) {}
 
+
+
+
   openSigninDialog() {
     this.dialog.open(DialogSigninContent).afterClosed().subscribe(result => {
     console.log(`Dialog result: ${result}`);
@@ -40,11 +41,6 @@ export class TestNavComponent {
   }
 
 	ngOnInit() {
-	        this.userAuth = this.fs.signedIn.subscribe((user) => {
-	            if (user) this.signedIn=true;
-	            else this.signedIn=false;
-	        });
-
 	    }
   
 
@@ -59,10 +55,12 @@ export class TestNavComponent {
   templateUrl: 'sign-in.html',
 })
 
+
 export class DialogSigninContent implements OnInit, OnDestroy {
     public signInForm: FormGroup;
     public signInFailed: boolean;
     public userAuth: Subscription;
+    public userData : any;
 
     constructor(public fb: FormBuilder, public fs: FirebaseService, public router: Router,private matDialog: MatDialog) {
         this.signInFailed = false;
@@ -70,9 +68,13 @@ export class DialogSigninContent implements OnInit, OnDestroy {
             email: new FormControl('', [ Validators.required, Validators.email ]),
             password: new FormControl('', [ Validators.required, Validators.minLength(6) ])
         });
+
         this.userAuth = this.fs.signedIn.subscribe((user) => {
-            if (user) this.matDialog.closeAll();
+            if (user) {
+              this.matDialog.closeAll();
+            }
         });
+
     }
 
     ngOnInit(): void {}

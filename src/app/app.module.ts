@@ -31,19 +31,23 @@ import { MatTreeModule } from '@angular/material/tree';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 import { TaradioComponent } from './taradio/taradio.component';
-import { DialogWriteContent } from './taradio/taradio.component';
-import { DialogFileContent } from './taradio/taradio.component';
-import { DialogRecordContent } from './taradio/taradio.component';
 import { TrackListComponent } from './track-list/track-list.component';
 
 import { DialogSigninContent } from './test-nav/test-nav.component';
 import { TaskListComponent } from './task-list/task-list.component';
+import { DialogTableComponent } from './dialog-table/dialog-table.component';
+import { DialogTableBoxComponent } from './dialog-table-box/dialog-table-box.component';
+import { DialogUploadComponent } from './dialog-upload/dialog-upload.component';
+import { DialogWriteComponent } from './dialog-write/dialog-write.component';
+import { DialogRecordComponent } from './dialog-record/dialog-record.component';
 
 
 @NgModule({
@@ -84,19 +88,22 @@ import { TaskListComponent } from './task-list/task-list.component';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireStorageModule,
     AngularFireAuthModule,
-    MatDialogModule
+    MatDialogModule,
+    MatFormFieldModule,
   ],
   declarations: [
     AppComponent,
     TestNavComponent,
     TestTableComponent,
     TaradioComponent,
-    DialogWriteContent,
-    DialogFileContent,
-    DialogRecordContent,
     TrackListComponent,
     TaskListComponent,
-    DialogSigninContent
+    DialogSigninContent,
+    DialogTableComponent,
+    DialogTableBoxComponent,
+    DialogUploadComponent,
+    DialogWriteComponent,
+    DialogRecordComponent
   ],
     entryComponents: [
     TaradioComponent
