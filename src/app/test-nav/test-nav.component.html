@@ -33,18 +33,23 @@
       </button>
       <span>Radio Dimanche</span>
 
+<!-- issue : the login button stay focused when closing the dialog box
+     workaround : use onclick="this.blur()" method on the login button -->
+
       <button
+        *ngIf="!signedIn && viewLoaded"
         type="button"
-        aria-label="Toggle sidenav"
         mat-icon-button
         (click)="openSigninDialog()"
+        onclick="this.blur()"
+        #LoginButton
         >
         <mat-icon aria-label="login icon">login</mat-icon>
       </button>
 
-      <button 
+      <button
+        *ngIf="signedIn && viewLoaded" 
         type="button"
-        aria-label="Toggle sidenav"
         mat-icon-button
         (click)="signOut()"
         >

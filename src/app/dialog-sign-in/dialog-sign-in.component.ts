@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { FirebaseService } from '../firebase.service';
@@ -17,18 +17,18 @@ export class DialogSignInComponent implements OnInit, OnDestroy {
   public userAuth: Subscription;
   public userData : any;
 
-  constructor(public fb: FormBuilder, public fs: FirebaseService, public router: Router,private matDialog: MatDialog) {
+  constructor(public fb: FormBuilder, public fs: FirebaseService, public router: Router,private matDialogRef: MatDialogRef<DialogSignInComponent>) {
       this.signInFailed = false;
       this.signInForm = this.fb.group({
           email: new FormControl('', [ Validators.required, Validators.email ]),
           password: new FormControl('', [ Validators.required, Validators.minLength(6) ])
       });
 
-      this.userAuth = this.fs.signedIn.subscribe((user) => {
+/*       this.userAuth = this.fs.signedIn.subscribe((user) => {
           if (user) {
-            this.matDialog.closeAll();
+            this.matDialogRef.closeAll();
           }
-      });
+      }); */
 
   }
 
@@ -43,8 +43,8 @@ export class DialogSignInComponent implements OnInit, OnDestroy {
           this.signInFailed = false;
           if (!fg.valid) throw new Error('Invalid sign-in credentials');
           const result = await this.fs.signIn(fg.value.email, fg.value.password);
-          console.log('that tickles', result);
-          if (result) this.router.navigate([ 'dimanche' ]);
+          console.log('Signed in : ', result);
+          if (result) this.matDialogRef.close({event:"signed in",data:"nom de l'utilisateur",signedIn:true}); // this.router.navigate([ 'dimanche' ]);
           else throw new Error('Sign-in failed');
       } catch (error) {
           console.log(error);

@@ -12,8 +12,11 @@ export class FirebaseService {
     constructor(public fs: AngularFirestore, public auth: AngularFireAuth) {
         this.signedIn = new Observable((subscriber) => {
             this.auth.onAuthStateChanged(subscriber);
+            //console.log('onAuthStateChanged subscriber');
         });
     }
+
+    
 
     async signIn(email: string, password: string) {
         try {
