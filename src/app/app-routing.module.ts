@@ -8,15 +8,18 @@ import { TrackListComponent } from './track-list/track-list.component';
 import { TaskListComponent } from './task-list/task-list.component';
 import { DialogTableComponent } from './dialog-table/dialog-table.component';
 
+import { AuthGuard } from './auth.guard'
+import { AccessDeniedComponent } from './access-denied/access-denied.component';
 
-/*{ path: '', redirectTo: '/tour', pathMatch: 'full' },
-*/const routes: Routes = [
+const routes: Routes = [
   {path: '', redirectTo: 'dimanche', pathMatch: 'full' },
   { path: 'tracklist', component: TestTableComponent },  
   { path: 'dimanche', component: TaradioComponent },
-  { path: 'tasks', component: TaskListComponent },
-  { path: 'dialogtable', component: DialogTableComponent }
+  { path: 'tasks', component: TaskListComponent,canActivate: [AuthGuard] },
+  { path: 'dialogtable', component: DialogTableComponent },
+  { path: 'accessdenied', component: AccessDeniedComponent }
 
+  
 ];
 
 @NgModule({

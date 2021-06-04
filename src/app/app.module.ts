@@ -47,6 +47,8 @@ import { DialogUploadComponent } from './dialog-upload/dialog-upload.component';
 import { DialogWriteComponent } from './dialog-write/dialog-write.component';
 import { DialogRecordComponent } from './dialog-record/dialog-record.component';
 import { DialogSignInComponent } from './dialog-sign-in/dialog-sign-in.component';
+import { AccessDeniedComponent } from './access-denied/access-denied.component';
+import {FirebaseService} from './firebase.service';
 
 
 @NgModule({
@@ -82,6 +84,7 @@ import { DialogSignInComponent } from './dialog-sign-in/dialog-sign-in.component
     MatDialogModule,
     MatFormFieldModule,
   ],
+  providers:[FirebaseService],
   declarations: [
     AppComponent,
     TestNavComponent,
@@ -94,7 +97,9 @@ import { DialogSignInComponent } from './dialog-sign-in/dialog-sign-in.component
     DialogUploadComponent,
     DialogWriteComponent,
     DialogRecordComponent,
-    DialogSignInComponent
+    DialogSignInComponent,
+    AccessDeniedComponent,
+
   ],
     entryComponents: [
     TaradioComponent

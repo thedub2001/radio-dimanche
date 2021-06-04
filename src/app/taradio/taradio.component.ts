@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { map } from 'rxjs/operators';
 
-import {MatDialog} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 import { DialogWriteComponent } from '../dialog-write/dialog-write.component';
 import { DialogUploadComponent } from '../dialog-upload/dialog-upload.component';
 import { DialogRecordComponent } from '../dialog-record/dialog-record.component';

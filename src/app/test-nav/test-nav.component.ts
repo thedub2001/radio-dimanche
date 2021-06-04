@@ -8,6 +8,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogSignInComponent } from '../dialog-sign-in/dialog-sign-in.component';
 import { ElementRef } from '@angular/core';
 
+// TO DO : Ne pas aller chercher les icones sur le net et le moins de librairies possible !
+
 @Component({
   selector: 'app-test-nav',
   templateUrl: './test-nav.component.html',
@@ -34,11 +36,9 @@ export class TestNavComponent implements OnInit {
   ) {
   }
 
-
-
   openSigninDialog() {
     this.dialog.open(DialogSignInComponent).afterClosed().subscribe(result => {
-      console.log(`Dialog result : ${JSON.stringify(result)}`);
+      console.log(`Dialog result  : ${JSON.stringify(result)}`);
       if(result.signedIn){
         this.signedIn=true;
       }else {
@@ -50,22 +50,6 @@ export class TestNavComponent implements OnInit {
   }
 
 	ngOnInit() {
-    this.fs.signedIn.subscribe(result => {
-      console.log(`signedIn.subscribe : ${JSON.stringify(result)}`);
-      if(result){
-        this.ngZone.run( () => { //necessary to update the HTML on refresh, we could use ngrx shareReplay()
-          this.signedIn=true;
-          this.viewLoaded=true;
-         });
-      }else {
-        this.ngZone.run( () => {
-          this.signedIn=false;
-          this.viewLoaded=true;
-        });
-      }
-      console.log(`SignedIn : ${this.signedIn}`);   
-      }
-    );
 	}
   
   signOut() {
