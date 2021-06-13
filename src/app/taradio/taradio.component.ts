@@ -21,6 +21,7 @@ export class TaradioComponent implements OnInit {
 		{name: 'record', icon: '../assets/img/voice-recorder-icon.svg', comment:'Enregistrer un message audio',method:"openDialogWrite()"},
 		{name: 'file', icon: '../assets/img/send-audio-icon.svg', comment:'Nous envoyer un fichier',method:"openDialogWrite()"},
 		{name: 'playlist', icon: '../assets/img/jukebox-icon.svg', comment:'Ecouter les pistes des autres utilisateurs',method:"openDialogWrite()"},
+		{name: 'moderate', icon: '../assets/img/sheriff-icon.svg', comment:'Vérifier les fichiers déposés',method:"openDialogWrite()"},
 	];
 
   // isHandset$ useless ?

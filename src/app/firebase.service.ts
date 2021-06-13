@@ -55,8 +55,9 @@ export class FirebaseService {
           }else {
             this.signedInBoolean.next(0);
           }
-          //console.log(`SignedInBoolean : ${JSON.stringify(this.signedInBoolean)}`);   
-          }
+          console.log(`this.signedInBoolean : ${JSON.stringify(this.signedInBoolean.value)}`);
+
+        }
         );
       }
 

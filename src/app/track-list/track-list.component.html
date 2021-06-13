@@ -1,46 +1,34 @@
-<table mat-table *ngFor="let element of elements">
-  <ng-container matColumnDef="name">
-    <th mat-header-cell > Name </th>
-    <td mat-cell > {{element.name}} </td>
-  </ng-container>
 
-  <ng-container matColumnDef="dateOfBirth">
-    <th mat-header-cell > Date of Birth </th>
-    <td mat-cell > {{element.date | date}} </td>
-  </ng-container>
 
-  <ng-container matColumnDef="address">
-    <th mat-header-cell > Address </th>
-    <td mat-cell > {{element.comment}} </td>
-  </ng-container>
+<div class="grid-container" *ngIf="tracks">
+  <h1 class="mat-h1">Listes de lecture</h1>
+  <mat-grid-list cols="4" rowHeight="350px">
+<!--     <mat-grid-tile *ngFor="let hero of cards | async" > -->
+    <mat-grid-tile *ngFor="let element of tracks.data" [colspan]="(isHandset$ | async) ? '4' : '1'" >
+      <mat-card class="dashboard-card" >
+        <mat-card-header>
+          <mat-card-title>
+            {{element.name}}
+            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu" xPosition="before">
+              <button mat-menu-item>Expand</button>
+              <button mat-menu-item>Remove</button>
+            </mat-menu>
+          </mat-card-title>
 
-  <ng-container matColumnDef="details">
-    <th mat-header-cell > Details </th>
-    <td mat-cell >
-      <button mat-icon-button color="primary" >
-          <mat-icon class="mat-18">reorder</mat-icon>
-      </button>
-    </td>
-  </ng-container>
+        </mat-card-header>
+<!--         <div class="image-container" routerLink="/testgrid"  style="cursor:pointer"> -->
+        <div class="image-container" style="cursor:pointer" (click)="openDialog(action.name)">          
+          <img mat-card-image src={{element.pictures.large}} style="height:200px;width:auto;">
+        </div>
 
-  <ng-container matColumnDef="update">
-      <th mat-header-cell > Update </th>
-      <td mat-cell >
-        <button mat-icon-button color="accent" >
-            <mat-icon class="mat-18">system_update</mat-icon>
-        </button>
-      </td>
-    </ng-container>
+        <mat-card-content class="dashboard-card-content">
+          <div>url : {{element.url}}</div>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
 
-    <ng-container matColumnDef="delete">
-        <th mat-header-cell > Delete </th>
-        <td mat-cell >
-          <button mat-icon-button color="warn" >
-              <mat-icon class="mat-18">delete</mat-icon>
-          </button>
-        </td>
-      </ng-container>
-
-  <tr mat-header-row ></tr>
-  <tr mat-row ></tr>
-</table>
+  </mat-grid-list>
+</div>
