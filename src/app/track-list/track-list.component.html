@@ -1,10 +1,43 @@
 
 
-<div class="grid-container" *ngIf="tracks">
-  <h1 class="mat-h1">Listes de lecture</h1>
+<div class="grid-container" *ngIf="SoundcloudTracks">
+  <h1 class="mat-h1">Listes de lecture Soundcloud</h1>
   <mat-grid-list cols="4" rowHeight="350px">
 <!--     <mat-grid-tile *ngFor="let hero of cards | async" > -->
-    <mat-grid-tile *ngFor="let element of tracks.data" [colspan]="(isHandset$ | async) ? '4' : '1'" >
+    <mat-grid-tile *ngFor="let element of SoundcloudTracks" [colspan]="(isHandset$ | async) ? '4' : '1'" >
+      <mat-card class="dashboard-card" >
+        <mat-card-header>
+          <mat-card-title>
+            {{element.title}}
+            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu" xPosition="before">
+              <button mat-menu-item>Expand</button>
+              <button mat-menu-item>Remove</button>
+            </mat-menu>
+          </mat-card-title>
+
+        </mat-card-header>
+<!--         <div class="image-container" routerLink="/testgrid"  style="cursor:pointer"> -->
+        <div class="image-container" style="cursor:pointer" (click)="openDialog(action.name)">          
+          <img mat-card-image src={{element.artwork_url}} style="height:auto;width:80%;">
+        </div>
+
+        <mat-card-content class="dashboard-card-content">
+          <div>url : {{element.uri}}</div>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+
+  </mat-grid-list>
+</div>
+
+<div class="grid-container" *ngIf="MixcloudTracks">
+  <h1 class="mat-h1">Listes de lecture Mixcloud</h1>
+  <mat-grid-list cols="4" rowHeight="350px">
+<!--     <mat-grid-tile *ngFor="let hero of cards | async" > -->
+    <mat-grid-tile *ngFor="let element of MixcloudTracks.data" [colspan]="(isHandset$ | async) ? '4' : '1'" >
       <mat-card class="dashboard-card" >
         <mat-card-header>
           <mat-card-title>
@@ -21,7 +54,7 @@
         </mat-card-header>
 <!--         <div class="image-container" routerLink="/testgrid"  style="cursor:pointer"> -->
         <div class="image-container" style="cursor:pointer" (click)="openDialog(action.name)">          
-          <img mat-card-image src={{element.pictures.large}} style="height:200px;width:auto;">
+          <img mat-card-image src={{element.pictures.large}} style="height:auto;width:80%;">
         </div>
 
         <mat-card-content class="dashboard-card-content">

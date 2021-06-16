@@ -4,9 +4,14 @@ import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 
-export interface cloudcastsData {
+export interface MixcloudData {
   data: {};
   name: string;
+}
+
+export interface SoundcloudData {
+  title: string;
+  uri: string;
 }
 
 @Component({
@@ -17,9 +22,10 @@ export interface cloudcastsData {
 
 export class TrackListComponent implements OnInit {
 
-  public tracks: cloudcastsData | undefined;
-  private cloudcastsUrl = 'https://api.mixcloud.com/spartacus/cloudcasts/';  // URL to Mixcloud web api
-  // private cloudcasts = 'https://api.soundcloud.com/users/14341196/playlists?client_id=31478aadfa8f9db41f03ffb13b43a57d';  // URL to Soundcloud web api
+  public MixcloudTracks: MixcloudData | undefined;
+  public SoundcloudTracks : SoundcloudData[] = [];
+  private MixcloudUserUrl = 'https://api.mixcloud.com/spartacus/cloudcasts/';  // URL to Mixcloud web api
+  private SoundcloudUserUrl = 'https://api.soundcloud.com/users/14341196/playlists?client_id=31478aadfa8f9db41f03ffb13b43a57d';  // URL to Soundcloud web api
 
 
   httpOptions = {
@@ -38,18 +44,28 @@ export class TrackListComponent implements OnInit {
 
    }
 
-  getHeroes() {
-    console.log('getting heroes')
-    return this.http.get<cloudcastsData>(this.cloudcastsUrl)
+  getMixcloudTracks() {
+    console.log('getting MixcloudTracks')
+    return this.http.get<MixcloudData>(this.MixcloudUserUrl)
       .pipe(
-        tap(_ => console.log('fetched heroes')),
-        catchError(this.handleError<cloudcastsData>('getHeroes'))
+        tap(_ => console.log('fetched MixcloudTracks')),
+        catchError(this.handleError<MixcloudData>('getMixcloudTracks'))
       );
   }
 
 
+  getSoundcloudTracks() : Observable<SoundcloudData[]>{
+    console.log('getting SoundcloudTracks')
+    return this.http.get<SoundcloudData[]>(this.SoundcloudUserUrl)
+      .pipe(
+        tap(_ => console.log('fetched SoundcloudTracks')),
+        catchError(this.handleError<SoundcloudData[]>('getSoundcloudTracks'))
+      );
+  }
+
   ngOnInit(): void {
-    this.getHeroes().subscribe(n=>this.tracks={data: n.data,name:n.name});
+    this.getMixcloudTracks().subscribe(n=>this.MixcloudTracks={data: n.data,name:n.name});
+    this.getSoundcloudTracks().subscribe(n=>this.SoundcloudTracks=n);
   }
 
   /**
