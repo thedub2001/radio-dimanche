@@ -10,11 +10,13 @@ import { DialogTableComponent } from './dialog-table/dialog-table.component';
 
 import { AngularFireAuthGuard, emailVerified, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 import { AccessDeniedComponent } from './access-denied/access-denied.component';
+import { MainComponent } from './main/main.component';
 
 const redirectUnauthorizedToAccessDenied = () => redirectUnauthorizedTo(['accessdenied']);
 
 export const routes: Routes = [
-  {path: '', redirectTo: 'dimanche', pathMatch: 'full' },
+  {path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: MainComponent },  
   { path: 'tracklist', component: TrackListComponent },  
   { path: 'dimanche', component: TaradioComponent },
   { path: 'tasks', component: TaskListComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToAccessDenied } },

@@ -22,6 +22,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { TestTableComponent } from './test-table/test-table.component';
 import { MatTableModule } from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -31,6 +32,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 import { AngularFireModule } from '@angular/fire';
@@ -49,6 +51,15 @@ import { DialogRecordComponent } from './dialog-record/dialog-record.component';
 import { DialogSignInComponent } from './dialog-sign-in/dialog-sign-in.component';
 import { AccessDeniedComponent } from './access-denied/access-denied.component';
 import {FirebaseService} from './firebase.service';
+import { SoundcloudService } from './soundcloud.service';
+import { MixcloudService } from './mixcloud.service';
+import { MainComponent } from './main/main.component';
+import { McplayerComponent } from './mcplayer/mcplayer.component';
+import { JavascriptComponent } from './javascript/javascript.component';
+import { AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component';
+import { PlaylistComponent } from './playlist/playlist.component';
+import { LiveComponent } from './live/live.component';
 
 
 @NgModule({
@@ -74,17 +85,23 @@ import {FirebaseService} from './firebase.service';
     MatPaginatorModule,
     MatSortModule,
     MatGridListModule,
+    MatTabsModule,
     MatMenuModule,
     MatTreeModule,
     DragDropModule,
     MatBadgeModule,
+    MatProgressSpinnerModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireStorageModule,
     AngularFireAuthModule,
     MatDialogModule,
     MatFormFieldModule,
   ],
-  providers:[FirebaseService],
+  providers:[
+    FirebaseService,
+    SoundcloudService,
+    MixcloudService
+  ],
   declarations: [
     AppComponent,
     TestNavComponent,
@@ -99,6 +116,13 @@ import {FirebaseService} from './firebase.service';
     DialogRecordComponent,
     DialogSignInComponent,
     AccessDeniedComponent,
+    MainComponent,
+    McplayerComponent,
+    JavascriptComponent,
+    AboutComponent,
+    ContactComponent,
+    PlaylistComponent,
+    LiveComponent,
 
   ],
     entryComponents: [

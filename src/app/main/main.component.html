@@ -1,0 +1,98 @@
+
+<javascript  src='../assets/js/widgetApi.js' type="text/javascript"></javascript>
+<javascript  src='../assets/js/challenge.js' type="text/javascript"></javascript>
+<!-- 
+<button onclick="pausep0()">Pause player</button> 
+<button onclick="playp0()">Play player</button> 
+
+<button onclick="nextTrack()">next track</button>
+<button onclick="doesConnectionExist()">check connection</button> -->
+
+<div hidden="true" #jsconsole id="jsconsole"></div>
+<div hidden="true" #playlist id="playlist"></div>
+
+<mat-tab-group>
+    <mat-tab label="Radio">
+
+<div 	style="margin-top:10%;">
+
+    <mat-grid-list cols="3" rowHeight="100px">  
+        <mat-grid-tile>
+            <mat-icon >fast_rewind</mat-icon>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <div *ngIf="loaded">
+                <mat-icon *ngIf="pause" onclick="playp0()">play_circle</mat-icon>
+                <mat-icon *ngIf="play" onclick="pausep0()">pause_circle</mat-icon>
+            </div>
+            
+            <mat-spinner *ngIf="!loaded"></mat-spinner>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-icon onclick="nextTrack()">fast_forward</mat-icon>
+        </mat-grid-tile>
+    </mat-grid-list>
+
+
+</div>
+
+</mat-tab>
+
+<!-- 
+to do : wrap playlists view in it's own component, is player still working ?
+to do : use route snapshot to get to playlis details https://angular.io/tutorial/toh-pt5
+to do : widget to footer ! regarder l'exemple "mixcloud footer widget" à la fin de ce html et ajouter les "style properties" à la fonction "prepareFrame()" de widgetApi.js" -->
+
+<mat-tab label="Episodes">
+    <div class="grid-container" *ngIf="mix.mixcloudPlaylistsContent">
+        <h1 class="mat-h1">Listes de lecture Mixcloud</h1>
+        <mat-grid-list cols="4" rowHeight="350px">
+                <!--     <mat-grid-tile *ngFor="let hero of cards | async" > -->
+          <mat-grid-tile *ngFor="let element of mix.mixcloudPlaylistsContent" [colspan]="(isHandset$ | async) ? '4' : '1'" >
+            <mat-card class="dashboard-card" >
+              <mat-card-header>
+                <mat-card-title>
+                  {{element.name}}
+                  <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+                    <mat-icon>more_vert</mat-icon>
+                  </button>
+                  <mat-menu #menu="matMenu" xPosition="before">
+                    <button mat-menu-item>Expand</button>
+                    <button mat-menu-item>Remove</button>
+                  </mat-menu>
+                </mat-card-title>
+      
+              </mat-card-header>
+                <!--         <div class="image-container" routerLink="/testgrid"  style="cursor:pointer"> -->
+              <div class="image-container" style="cursor:pointer" >          
+                <img mat-card-image src="" style="height:auto;width:80%;">
+              </div>
+      
+              <mat-card-content class="dashboard-card-content">
+                <div>url : {{element.url}}</div>
+              </mat-card-content>
+            </mat-card>
+          </mat-grid-tile>
+      
+        </mat-grid-list>
+    </div>
+
+</mat-tab>
+<mat-tab label="A propos"> <app-about></app-about> </mat-tab>
+<mat-tab label="Contact"> <app-contact></app-contact> </mat-tab>
+<mat-tab label="Playlist">
+<iframe width="100%" height="180" src="https://www.mixcloud.com/widget/iframe/?hide_cover=1&autoplay=1&feed=%2Fspartacus%2Fplaylists%2Fnovelty%2F" frameborder="0" allow="autoplay"></iframe>
+</mat-tab>
+
+<!-- <mat-tab label="LIVE"> Content 5 </mat-tab> -->
+</mat-tab-group>
+
+<footer fxFlex="50px" fxLayoutAlign="center center" class="footer">
+    <div id="player" style="position: fixed; left: 0; bottom: 0; right: 0; height: 60px; z-index: 10">
+<!--         <iframe id="widget" src="https://www.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&light=1&autoplay=1&feed=%2Ffatkidonfire%2Fnahlith-x-fatkidonfire-fkxf005-promo-mix%2F&amp;footer_widget=1" width="100%" height="100%" frameborder="0" allow="autoplay"></iframe>
+ --> 
+             <iframe style="visibility:hidden;" id="widget" src="https://www.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&light=1&autoplay=1&feed=%2Ffatkidonfire%2Fnahlith-x-fatkidonfire-fkxf005-promo-mix%2F&footer_widget=1" width="100%" height="100%" frameborder="0" allow="autoplay"></iframe>
+
+</div>
+</footer>
+

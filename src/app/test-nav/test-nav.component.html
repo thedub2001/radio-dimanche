@@ -25,19 +25,25 @@
 
     </mat-nav-list>
   </mat-sidenav>
-  <mat-sidenav-content>
+  <mat-sidenav-content style="height:calc(100% - 60px);"> 
+    <!--     Let 60px free space at the bottom of the page for the footer music player   -->
     <mat-toolbar color="primary" class="mat-elevation-z10" style="justify-content: space-between;">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()"
-        >
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
 
-      <span >RADIO DIMANCHE</span>
-      <span hidden>{{(fs.auth.user | async)?.email}}</span>
+        <button
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="drawer.toggle()"
+          >
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+
+        <span >
+          <img top="0" style="max-width: 80%;height: auto;display: block;margin-left: auto;margin-right: auto;margin-top:5%;" src="../assets/img/dimanche_flaticon.svg">
+        </span>
+        <span hidden>{{(fs.auth.user | async)?.email}}</span>
+
+
 
 <!-- issue : the initial value for async pipe is null (the same that when no user is authenticated) https://github.com/angular/angular/issues/16982
      workaround : use another observable that can take an initial value :
@@ -79,8 +85,6 @@
           >
           <mat-icon>no-icon</mat-icon>
         </button>
-
-
 
     </mat-toolbar>
 
