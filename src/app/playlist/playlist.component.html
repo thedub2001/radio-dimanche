@@ -1,32 +1,35 @@
 <div class="grid-container" *ngIf="playlistDetail">
     <h1 class="mat-h1">Détail de la playlist {{playlistName}} </h1>
-    <mat-grid-list cols="4" rowHeight="350px">
-            <!--     <mat-grid-tile *ngFor="let hero of cards | async" > -->
-      <mat-grid-tile *ngFor="let element of playlistDetail.tracks" [colspan]="(isHandset$ | async) ? '4' : '1'" >
-        <mat-card class="dashboard-card" >
-          <mat-card-header>
-            <mat-card-title>
-              {{element.name}}
-              <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
-                <mat-icon>more_vert</mat-icon>
-              </button>
-              <mat-menu #menu="matMenu" xPosition="before">
-                <button mat-menu-item>Expand</button>
-                <button mat-menu-item>Remove</button>
-              </mat-menu>
-            </mat-card-title>
+
+    <table mat-table [dataSource]="dataSource" #mytable class="my-table mat-elevation-z8" style="width:90%;margin-left: auto;margin-right: auto;">
   
-          </mat-card-header>
-            <!--         <div class="image-container" routerLink="/testgrid"  style="cursor:pointer"> -->
-          <div class="image-container" style="cursor:pointer" >          
-            <img mat-card-image src="" style="height:auto;width:80%;">
-          </div>
+      <!--- #mytable is not used
+      
+      Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
   
-          <mat-card-content class="dashboard-card-content">
-            <div>url : {{element.url}}</div>
-          </mat-card-content>
-        </mat-card>
-      </mat-grid-tile>
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
   
-    </mat-grid-list>
+      <!-- Time Column -->
+      <ng-container matColumnDef="time">
+        <th mat-header-cell *matHeaderCellDef> Durée </th>
+        <td mat-cell *matCellDef="let element"> {{element.audio_length}} </td>
+      </ng-container>
+  
+      <!-- Action Column -->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Action </th>
+        <td mat-cell *matCellDef="let element" class="action-link"> 
+          <a (click)="playTrack();">Play</a>
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    
 </div>
