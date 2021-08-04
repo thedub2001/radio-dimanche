@@ -11,6 +11,7 @@ import { MixcloudService } from '../mixcloud.service';
 export class MainComponent implements AfterViewInit, OnInit  {
   @ViewChild('jsconsole') jsconsole: ElementRef;
   @ViewChild('playlist') playlist: ElementRef;
+  detailActivated: boolean = false;
 
   public play : boolean = false;
   public loaded : boolean = false;

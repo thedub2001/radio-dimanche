@@ -60,6 +60,7 @@ import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { PlaylistComponent } from './playlist/playlist.component';
 import { LiveComponent } from './live/live.component';
+import { EmptyComponent } from './empty/empty.component';
 
 
 @NgModule({
@@ -123,6 +124,7 @@ import { LiveComponent } from './live/live.component';
     ContactComponent,
     PlaylistComponent,
     LiveComponent,
+    EmptyComponent,
 
   ],
     entryComponents: [
