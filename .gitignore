@@ -9,7 +9,7 @@
 
 # dependencies
 /node_modules
-!/node_modules/ngx-audio-player/__ivy_ngcc__/fesm2015/ngx-audio-player.js
+!*/node_modules/ngx-audio-player/__ivy_ngcc__/fesm2015/ngx-audio-player.js
 
 # profiling files
 chrome-profiler-events*.json
