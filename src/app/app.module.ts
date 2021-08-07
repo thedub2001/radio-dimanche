@@ -61,6 +61,7 @@ import { ContactComponent } from './contact/contact.component';
 import { PlaylistComponent } from './playlist/playlist.component';
 import { LiveComponent } from './live/live.component';
 import { EmptyComponent } from './empty/empty.component';
+import { NgxAudioPlayerModule } from 'ngx-audio-player';
 
 
 @NgModule({
@@ -97,6 +98,7 @@ import { EmptyComponent } from './empty/empty.component';
     AngularFireAuthModule,
     MatDialogModule,
     MatFormFieldModule,
+    NgxAudioPlayerModule,
   ],
   providers:[
     FirebaseService,

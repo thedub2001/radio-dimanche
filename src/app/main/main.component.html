@@ -16,14 +16,14 @@
 
 <div 	style="margin-top:10%;">
 
-    <mat-grid-list cols="3" rowHeight="100px">  
+    <mat-grid-list cols="3" rowHeight="200px">  
         <mat-grid-tile>
             <mat-icon >fast_rewind</mat-icon>
         </mat-grid-tile>
         <mat-grid-tile>
             <div *ngIf="loaded">
-                <mat-icon *ngIf="pause" onclick="playp0()">play_circle</mat-icon>
-                <mat-icon *ngIf="play" onclick="pausep0()">pause_circle</mat-icon>
+                <mat-icon *ngIf="pause" onclick="playp0()" class='big-icon'>play_circle</mat-icon>
+                <mat-icon *ngIf="play" onclick="pausep0()" class='big-icon'>pause_circle</mat-icon>
             </div>
             
             <mat-spinner *ngIf="!loaded"></mat-spinner>
@@ -32,7 +32,6 @@
             <mat-icon onclick="nextTrack()">fast_forward</mat-icon>
         </mat-grid-tile>
     </mat-grid-list>
-
 
 </div>
 
@@ -87,19 +86,21 @@ to do : widget to footer ! regarder l'exemple "mixcloud footer widget" à la fin
 </mat-tab>
 <mat-tab label="A propos"> <app-about></app-about> </mat-tab>
 <mat-tab label="Contact"> <app-contact></app-contact> </mat-tab>
-<mat-tab label="Playlist">
-<iframe width="100%" height="180" src="https://www.mixcloud.com/widget/iframe/?hide_cover=1&autoplay=1&feed=%2Fspartacus%2Fplaylists%2Fnovelty%2F" frameborder="0" allow="autoplay"></iframe>
-</mat-tab>
+
 
 <!-- <mat-tab label="LIVE"> Content 5 </mat-tab> -->
 </mat-tab-group>
 
-<footer fxFlex="50px" fxLayoutAlign="center center" class="footer">
-    <div id="player" style="position: fixed; left: 0; bottom: 0; right: 0; height: 60px; z-index: 10">
-<!--         <iframe id="widget" src="https://www.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&light=1&autoplay=1&feed=%2Ffatkidonfire%2Fnahlith-x-fatkidonfire-fkxf005-promo-mix%2F&amp;footer_widget=1" width="100%" height="100%" frameborder="0" allow="autoplay"></iframe>
- --> 
-             <iframe style="visibility:hidden;" id="widget" src="https://www.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&light=1&autoplay=1&feed=%2Ffatkidonfire%2Fnahlith-x-fatkidonfire-fkxf005-promo-mix%2F&footer_widget=1" width="100%" height="100%" frameborder="0" allow="autoplay"></iframe>
-
-</div>
+<footer fxFlex="52px" fxLayoutAlign="center center" class="footer">
+  <div  id="player" style="position: fixed; left: 0; bottom: 0; right: 0; height: 52px; z-index: 10">
+    
+    <ngx-audio-player [playlist]="sc.dataSource" [displayTitle]="msaapDisplayTitle" [autoPlay]="false" 
+      muted="muted" [displayPlaylist]="msaapDisplayPlayList" [pageSizeOptions]="msaapPageSizeOptions" (trackEnded)="onEnded($event)"  (trackPlayed)="onPlayed($event)" (trackPaused)="onPaused($event)" (trackLoaded)="onLoaded($event)" (trackLoading)="onLoading($event)"
+      [displayVolumeControls]="msaapDisplayVolumeControls" [displayRepeatControls]="msaapDisplayRepeatControls"
+      [disablePositionSlider]="msaapDisablePositionSlider" [displayArtist]="msaapDisplayArtist" 
+      [displayDuration]="msaapDisplayDuration" [expanded]="true">
+    </ngx-audio-player> 
+      
+  </div>
 </footer>
 

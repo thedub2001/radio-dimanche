@@ -1,0 +1,16 @@
+.loading-message {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    font-size: large;
+    overflow: hidden;
+    z-index: -1;
+ }
+
+ .big-icon{
+    font-size: 200px;
+    height: 200px;
+    width: 200px;
+    line-height: 200px;
+ }

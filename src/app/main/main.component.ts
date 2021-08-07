@@ -1,5 +1,7 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { SoundcloudService } from '../soundcloud.service';
 import { MixcloudService } from '../mixcloud.service';
+import { Track } from 'ngx-audio-player';   
 
 
 @Component({
@@ -17,51 +19,76 @@ export class MainComponent implements AfterViewInit, OnInit  {
   public loaded : boolean = false;
   public pause : boolean = false;
 
-  constructor(public mix : MixcloudService) {
+  msaapDisplayTitle = false;
+  msaapDisplayPlayList = false;
+  msaapPageSizeOptions = [2,4,6];
+  msaapDisplayVolumeControls = true;
+  msaapDisplayRepeatControls = true;
+  msaapDisplayArtist = false;
+  msaapDisplayDuration = false;
+  msaapDisablePositionSlider = false;
 
-  }
+// Material Style Advance Audio Player Playlist
+msaapPlaylist: Track[] = [
+  {
+    title: 'Audio One Title',
+    link: 'http://proselyt.com/louisemichel/lm-audio/tribut-to-mmm-remix.mp3',
+    artist: 'Audio One Artist',
+    duration: 54589
+  },
+  {
+    title: 'Audio Two Title',
+    link: 'http://proselyt.com/louisemichel/lm-audio/style.mp3',
+    artist: 'Audio Two Artist',
+    duration: 874
+  },
+  {
+    title: 'Audio Three Title',
+    link: 'http://proselyt.com/louisemichel/lm-audio/espace-no-limite.mp3',
+    artist: 'Audio Three Artist',
+    duration: 654978
+  },
+];
+public tempSrc : string = "coucou";
+
+  constructor(public sc : SoundcloudService,public mix : MixcloudService) {}
 
   ngOnInit(): void {
-    this.mix.ready$.subscribe(n => { if (n) {console.log("ready : ", n);this.populatePlaylist();}}) 
   }
 
   ngAfterViewInit(): void {
-    var targetNode = this.jsconsole.nativeElement;
-    var config = { attributes: true, childList: true };
-    var observer = new MutationObserver(() => {
-      console.log(targetNode.innerHTML);
-      switch (targetNode.innerHTML) {
-        case "playing" :
-          this.play=true;
-          this.pause = false;
-          break;
-        case "pause" :
-          this.play=false;
-          this.pause = true;
-          break;
-        case "loading" :
-          this.play=false;
-          this.loaded=false;
-          break;
-        case "loaded" :
-          this.loaded=true;
-          this.play=false;
-          this.pause = true;          
-          break;
-        default:
-          console.log(`jsconsole unknown message : ${targetNode.innerHTML}.`);
-      }
-
-
-    });
-
-    observer.observe(targetNode, config);
+    console.log("this.tempSrc ",this.tempSrc)
+    console.log("this.sc.tempResponse.http_mp3_128_url ",this.sc.tempResponse.http_mp3_128_url)
+    this.tempSrc=this.sc.tempResponse.http_mp3_128_url;
   }
 
-  populatePlaylist() : void {
-    this.playlist.nativeElement.innerHTML=JSON.stringify(this.mix.mixcloudPlaylistsTracksArray);
-    // console.log(this.mix.mixcloudPlaylistsTracksArray);
-    // console.log(JSON.stringify(this.mix.mixcloudPlaylistsTracksArray));
+  onEnded(e) : void {
+    console.log("onEnded :",e);
+  }
+  
+  onPlayed(e) : void {
+    console.log("onPlayed :",e);
+    this.play=true;
+    this.pause = false;
+  }
+  
+  onPaused(e) : void {
+    console.log("onPaused :",e);
+    this.play=false;
+    this.pause = true;
+  }
+    
+  onLoaded(e) : void {
+    console.log("onLoaded :",e);
+    this.loaded=true;
+    this.play=false;
+    this.pause = true;   
+  }
+
+  onLoading(e) : void {
+    console.log("onLoading :",e);
+    this.play=false;
+    this.loaded=false;
   }
 
  }
