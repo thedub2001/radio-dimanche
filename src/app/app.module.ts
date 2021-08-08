@@ -40,7 +40,6 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 import { TaradioComponent } from './taradio/taradio.component';
-import { TrackListComponent } from './track-list/track-list.component';
 
 import { TaskListComponent } from './task-list/task-list.component';
 import { DialogTableComponent } from './dialog-table/dialog-table.component';
@@ -52,7 +51,6 @@ import { DialogSignInComponent } from './dialog-sign-in/dialog-sign-in.component
 import { AccessDeniedComponent } from './access-denied/access-denied.component';
 import {FirebaseService} from './firebase.service';
 import { SoundcloudService } from './soundcloud.service';
-import { MixcloudService } from './mixcloud.service';
 import { MainComponent } from './main/main.component';
 import { McplayerComponent } from './mcplayer/mcplayer.component';
 import { JavascriptComponent } from './javascript/javascript.component';
@@ -62,6 +60,8 @@ import { PlaylistComponent } from './playlist/playlist.component';
 import { LiveComponent } from './live/live.component';
 import { EmptyComponent } from './empty/empty.component';
 import { NgxAudioPlayerModule } from 'ngx-audio-player';
+import { VimeModule } from '@vime/angular';
+
 
 
 @NgModule({
@@ -99,18 +99,17 @@ import { NgxAudioPlayerModule } from 'ngx-audio-player';
     MatDialogModule,
     MatFormFieldModule,
     NgxAudioPlayerModule,
+    VimeModule,
   ],
   providers:[
     FirebaseService,
-    SoundcloudService,
-    MixcloudService
+    SoundcloudService
   ],
   declarations: [
     AppComponent,
     TestNavComponent,
     TestTableComponent,
     TaradioComponent,
-    TrackListComponent,
     TaskListComponent,
     DialogTableComponent,
     DialogTableBoxComponent,

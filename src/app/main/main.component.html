@@ -1,16 +1,3 @@
-
-<javascript  src='../assets/js/widgetApi.js' type="text/javascript"></javascript>
-<javascript  src='../assets/js/challenge.js' type="text/javascript"></javascript>
-<!-- 
-<button onclick="pausep0()">Pause player</button> 
-<button onclick="playp0()">Play player</button> 
-
-<button onclick="nextTrack()">next track</button>
-<button onclick="doesConnectionExist()">check connection</button> -->
-
-<div hidden="true" #jsconsole id="jsconsole"></div>
-<div hidden="true" #playlist id="playlist"></div>
-
 <mat-tab-group>
     <mat-tab label="Radio">
 
@@ -49,15 +36,15 @@ to do : widget to footer ! regarder l'exemple "mixcloud footer widget" à la fin
 
   <router-outlet></router-outlet>
 
-    <div class="grid-container" *ngIf="mix.mixcloudPlaylistsContent && !detailActivated">
+    <div class="grid-container" *ngIf="sc.soundcloudPlaylists && !detailActivated">
         <h1 class="mat-h1">Listes de lecture Mixcloud</h1>
         <mat-grid-list cols="4" rowHeight="350px">
                 <!--     <mat-grid-tile *ngFor="let hero of cards | async" > -->
-          <mat-grid-tile *ngFor="let element of mix.mixcloudPlaylistsContent" [colspan]="(isHandset$ | async) ? '4' : '1'" >
-            <mat-card class="dashboard-card" >
+          <mat-grid-tile *ngFor="let element of sc.soundcloudPlaylists" [colspan]="(isHandset$ | async) ? '4' : '1'" >
+            <mat-card class="dashboard-card" style="max-width: 200px;" >
               <mat-card-header>
                 <mat-card-title >
-                  {{element.name}}
+                  {{element.title}}
                   <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
                     <mat-icon>more_vert</mat-icon>
                   </button>
@@ -70,12 +57,13 @@ to do : widget to footer ! regarder l'exemple "mixcloud footer widget" à la fin
               </mat-card-header>
                 <!--         <div class="image-container" routerLink="/testgrid"  style="cursor:pointer"> -->
               
-                  <div class="image-container" [routerLink]="['playlist', element.name]" (click)="detailActivated=true;" style="cursor:pointer" >          
-                <img mat-card-image src="" style="height:auto;width:80%;">
+                  <div class="image-container" [routerLink]="['playlist', element.title]" (click)="detailActivated=true;" style="cursor:pointer" >          
+                <img mat-card-image src="{{element.artwork_url}}" style="width: 100%;margin-left:auto;">
               </div>
       
               <mat-card-content class="dashboard-card-content">
-                <div>url : {{element.url}}</div>
+                <div>Nombre de titres <br/>Date dernier ajout
+                </div>
               </mat-card-content>
             </mat-card>
           </mat-grid-tile>

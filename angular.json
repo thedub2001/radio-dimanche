@@ -26,7 +26,11 @@
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css",
-              "src/assets/css/spinner.css"
+              "src/assets/css/spinner.css",
+              "./node_modules/@vime/core/themes/default.css",
+              "./node_modules/@vime/core/themes/light.css"
+
+
             ],
             "scripts": [
             ]

@@ -1,4 +1,4 @@
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
@@ -17,71 +17,128 @@ export interface SoundcloudData {
   }
 ]
 }
-
-
-export interface SoundcloudTrackData {
-  http_mp3_128_url: string;
-
+// playlistTracksData is not used but could be
+export interface playlistTracksData {
+  tracks: [
+    {
+      id:number,
+      duration:number,
+      stream_url:string,
+      title:string,
+      user:{username:string}
+    }
+  ];
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class SoundcloudService {
+// TO DO : enlever les premières majuscules  de chaque expression
+  public soundcloudPlaylists : SoundcloudData[];
+  public soundcloudPlaylistsTracksArray=[];
 
-  public SoundcloudTracks : SoundcloudData[];
-  private SoundcloudUserUrl = 'https://api.soundcloud.com/users/14341196/playlists?client_id=31478aadfa8f9db41f03ffb13b43a57d';  // URL to Soundcloud web api
-  public tempid : number;
-  public SoundcloudTrackStreamUrl : SoundcloudTrackData;
-  public SoundcloudTrackUrl = '';  // URL to Soundcloud web api
-  public tempResponse: SoundcloudTrackData;
+  private soundcloudUserPlaylistsUrl = 'https://api.soundcloud.com/users/14341196/playlists?client_id=31478aadfa8f9db41f03ffb13b43a57d';  // URL to Soundcloud web api
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'text/html' }) //or json
   };
-  dataSource =[];
 
+  dataSource =[];
 
   constructor(private http: HttpClient) {
 
-    this.getSoundcloudTracks().subscribe(n=>{
-      this.SoundcloudTracks=n;
-      this.tempid= this.SoundcloudTracks[0].tracks[0].id;
-      this.SoundcloudTrackUrl = 'https://api.soundcloud.com/tracks/'+this.tempid+'/streams?client_id=31478aadfa8f9db41f03ffb13b43a57d';
-      this.getSoundcloudTrackStreamUrl().subscribe(n=>{this.tempResponse= n;console.log(this.tempResponse);});
-    
-      this.dataSource = this.SoundcloudTracks[0].tracks.map(obj => {
+    this.getSoundcloudUserPlaylists().subscribe(n=>{
+      this.soundcloudPlaylists=n;
+      this.soundcloudPlaylists.forEach(function (value: any,item:number) {
+        // console.log(value.url);
+        value.tracks.forEach(function (value: any,item:number) {
+          
+          this.soundcloudPlaylistsTracksArray.push({
+            title:value.title,
+            link:value.stream_url+'?client_id=31478aadfa8f9db41f03ffb13b43a57d',
+            duration:value.duration,
+            artist:value.user.username
+          })
+        },this);
+
+      },this); 
+
+      this.fisherYates(this.soundcloudPlaylistsTracksArray);
+      this.dataSource = this.soundcloudPlaylistsTracksArray;
+      /* 
+      // Interesant example of maping an array
+      this.dataSource = this.soundcloudPlaylists[3].tracks.map(obj => {
         var rObj = {};
         rObj["title"] = obj.title;
         rObj["link"] = obj.stream_url+'?client_id=31478aadfa8f9db41f03ffb13b43a57d';
-        rObj["duration"] = obj.duration;
+        rObj["duration"] = obj.duration; // duration is not used by the player...
         rObj["artist"] = obj.user.username;
         return rObj;
-      });
-      this.dataSource.splice(-1); //delelete the last item that is "setter"
+      }); */
+
+
+      this.dataSource.splice(-1); //ATTENTION : necessary ? delelete the last item that is "setter"
     
     });
-    // TO DO : do something with the SoundcloudTracks array
+
+
+
+
+    
+    // TO DO : do something with the soundcloudPlaylists array
    }
 
-  getSoundcloudTracks() : Observable<SoundcloudData[]>{
-    console.log('getting SoundcloudTracks')
-    return this.http.get<SoundcloudData[]>(this.SoundcloudUserUrl)
+  getSoundcloudUserPlaylists() : Observable<SoundcloudData[]>{
+    console.log('getting soundcloudUserPlaylists')
+    return this.http.get<SoundcloudData[]>(this.soundcloudUserPlaylistsUrl)
       .pipe(
-        tap(_ => console.log('fetched SoundcloudTracks')),
-        catchError(this.handleError<SoundcloudData[]>('getSoundcloudTracks'))
+        tap(_ => console.log('fetched soundcloudUserPlaylists')),
+        catchError(this.handleError<SoundcloudData[]>('getSoundcloudUserPlaylists'))
       );
+  }
+  
+  getSoundcloudPlaylisTracks(playlistName : string) : any {
+    const tempPlaylistTracks=this.soundcloudPlaylists.find(p=>p.title===playlistName)
+    const playlistTracks = tempPlaylistTracks.tracks.map(obj => {
+      var rObj = {};
+      rObj["name"] = obj.title;
+      rObj["key"] = obj.id;
+      rObj["audio_length"] = this.secondsToHms(obj.duration/1000);
+      return rObj;
+    });
+    return playlistTracks;
   }
 
-  
-  getSoundcloudTrackStreamUrl() : Observable<SoundcloudTrackData>{
-    console.log('getting SoundcloudTrackStreamUrl')
-    return this.http.get<SoundcloudTrackData>(this.SoundcloudTrackUrl)
-      .pipe(
-        tap(_ => console.log('fetched SoundcloudTrackStreamUrl')),
-        catchError(this.handleError<SoundcloudTrackData>('getSoundcloudTrackStreamUrl'))
-      );
+  secondsToHms(d:number) {
+    d = Number(d);
+    var h = Math.floor(d / 3600);
+    var m = Math.floor(d % 3600 / 60);
+    var s = Math.floor(d % 3600 % 60);
+
+    var hDisplay = (h>0)?this.checkTime(h):"";
+    var hcolons = (h>0)?":":"";
+    var mDisplay = this.checkTime(m);
+    var sDisplay = this.checkTime(s);
+    return hDisplay+hcolons+mDisplay+":"+sDisplay; 
   }
+
+ checkTime(i:number) {
+  return (i < 10) ? "0" + i : i;
+  }
+
+    // randomization algorithm : http://sedition.com/perl/javascript-fy.html
+    fisherYates ( myArray ) {
+      var i = myArray.length;
+      if ( i == 0 ) return false;
+      while ( --i ) { 
+        var j = Math.floor( Math.random() * ( i + 1 ) );
+        var tempi = myArray[i];
+        var tempj = myArray[j];
+        myArray[i] = tempj;
+        myArray[j] = tempi;
+      }
+    }
 
   /**
    * Handle Http operation that failed.

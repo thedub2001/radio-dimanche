@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { TaradioComponent } from './taradio/taradio.component';
 import { TestTableComponent } from './test-table/test-table.component';
-import { TrackListComponent } from './track-list/track-list.component';
 
 import { TaskListComponent } from './task-list/task-list.component';
 import { DialogTableComponent } from './dialog-table/dialog-table.component';
@@ -23,7 +22,6 @@ export const routes: Routes = [
       {path: 'playlist/:id', component: PlaylistComponent }
   ]
   },  
-  { path: 'tracklist', component: TrackListComponent },  
   { path: 'dimanche', component: TaradioComponent },
   { path: 'tasks', component: TaskListComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToAccessDenied } },
   { path: 'dialogtable', component: DialogTableComponent },

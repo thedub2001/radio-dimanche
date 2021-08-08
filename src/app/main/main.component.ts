@@ -1,8 +1,6 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { SoundcloudService } from '../soundcloud.service';
-import { MixcloudService } from '../mixcloud.service';
 import { Track } from 'ngx-audio-player';   
-
 
 @Component({
   selector: 'app-main',
@@ -28,38 +26,12 @@ export class MainComponent implements AfterViewInit, OnInit  {
   msaapDisplayDuration = false;
   msaapDisablePositionSlider = false;
 
-// Material Style Advance Audio Player Playlist
-msaapPlaylist: Track[] = [
-  {
-    title: 'Audio One Title',
-    link: 'http://proselyt.com/louisemichel/lm-audio/tribut-to-mmm-remix.mp3',
-    artist: 'Audio One Artist',
-    duration: 54589
-  },
-  {
-    title: 'Audio Two Title',
-    link: 'http://proselyt.com/louisemichel/lm-audio/style.mp3',
-    artist: 'Audio Two Artist',
-    duration: 874
-  },
-  {
-    title: 'Audio Three Title',
-    link: 'http://proselyt.com/louisemichel/lm-audio/espace-no-limite.mp3',
-    artist: 'Audio Three Artist',
-    duration: 654978
-  },
-];
-public tempSrc : string = "coucou";
-
-  constructor(public sc : SoundcloudService,public mix : MixcloudService) {}
+  constructor(public sc : SoundcloudService) {}
 
   ngOnInit(): void {
   }
 
   ngAfterViewInit(): void {
-    console.log("this.tempSrc ",this.tempSrc)
-    console.log("this.sc.tempResponse.http_mp3_128_url ",this.sc.tempResponse.http_mp3_128_url)
-    this.tempSrc=this.sc.tempResponse.http_mp3_128_url;
   }
 
   onEnded(e) : void {
