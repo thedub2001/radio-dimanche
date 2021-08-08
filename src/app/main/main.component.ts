@@ -1,6 +1,5 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { SoundcloudService } from '../soundcloud.service';
-import { Track } from 'ngx-audio-player';   
 
 @Component({
   selector: 'app-main',
