@@ -64,6 +64,14 @@ export class AudioPlayerComponent implements OnInit, OnChanges {
 
     @Output()
     trackEnded: Subject<string> = new Subject<string>();
+    @Output()
+    trackPlayed: Subject<string> = new Subject<string>();
+    @Output()
+    trackPaused: Subject<string> = new Subject<string>();
+    @Output()
+    trackLoaded: Subject<string> = new Subject<string>();
+    @Output()
+    trackLoading: Subject<string> = new Subject<string>();
 
     @ViewChild('audioPlayer', { static: true }) player: ElementRef;
 
@@ -123,6 +131,18 @@ export class AudioPlayerComponent implements OnInit, OnChanges {
         });
         this.player.nativeElement.addEventListener('ended', () => {
             this.trackEnded.next('ended');
+        });
+        this.player.nativeElement.addEventListener('play', () => {
+            this.trackPlayed.next('playing');
+        });
+        this.player.nativeElement.addEventListener('pause', () => {
+            this.trackPaused.next('pause');
+        });
+        this.player.nativeElement.addEventListener('canplay', () => {
+            this.trackLoaded.next('loaded');
+        });
+        this.player.nativeElement.addEventListener('loadeddata', () => {
+            this.trackLoading.next('loading');
         });
 
     }
