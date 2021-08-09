@@ -5,24 +5,25 @@
 
     <mat-grid-list cols="3" rowHeight="200px">  
         <mat-grid-tile>
-            <mat-icon >fast_rewind</mat-icon>
+            <mat-icon (click)="ngxAudioPlayerPrevious()">fast_rewind</mat-icon>
         </mat-grid-tile>
         <mat-grid-tile>
             <div *ngIf="loaded">
-                <mat-icon *ngIf="pause" onclick="playp0()" class='big-icon'>play_circle</mat-icon>
-                <mat-icon *ngIf="play" onclick="pausep0()" class='big-icon'>pause_circle</mat-icon>
+                <mat-icon *ngIf="pause" (click)="ngxAudioPlayerPlay()" class='big-icon'>play_circle</mat-icon>
+                <mat-icon *ngIf="play" (click)="ngxAudioPlayerPlay()" class='big-icon'>pause_circle</mat-icon>
             </div>
             
             <mat-spinner *ngIf="!loaded"></mat-spinner>
         </mat-grid-tile>
         <mat-grid-tile>
-            <mat-icon onclick="nextTrack()">fast_forward</mat-icon>
+            <mat-icon (click)="ngxAudioPlayerNext()">fast_forward</mat-icon>
         </mat-grid-tile>
     </mat-grid-list>
 
 </div>
-
 </mat-tab>
+
+
 
 <!-- 
 to do : wrap playlists view in it's own component, is player still working ?

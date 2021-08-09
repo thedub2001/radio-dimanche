@@ -1,5 +1,7 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AudioPlayerComponent } from 'ngx-audio-player';
 import { SoundcloudService } from '../soundcloud.service';
+
 
 @Component({
   selector: 'app-main',
@@ -10,6 +12,12 @@ import { SoundcloudService } from '../soundcloud.service';
 export class MainComponent implements AfterViewInit, OnInit  {
   @ViewChild('jsconsole') jsconsole: ElementRef;
   @ViewChild('playlist') playlist: ElementRef;
+  
+  // we need to get the ElementRef of the HTML5 audio player wich is part of the AudioPlayerComponent
+  // See : https://www.pluralsight.com/guides/querying-the-dom-with-@viewchild-and-@viewchildren
+  @ViewChild(AudioPlayerComponent, { static: false }) ngxPlayer : AudioPlayerComponent;
+
+  
   detailActivated: boolean = false;
 
   public play : boolean = false;
@@ -29,6 +37,20 @@ export class MainComponent implements AfterViewInit, OnInit  {
 
   ngOnInit(): void {
   }
+
+  ngxAudioPlayerPlay(): void {
+    this.ngxPlayer.playBtnHandler();
+  }
+
+  ngxAudioPlayerPrevious(): void {
+    this.ngxPlayer.previousSong();
+  }
+
+  ngxAudioPlayerNext(): void {
+    this.ngxPlayer.nextSong();
+  }
+
+
 
   ngAfterViewInit(): void {
   }

@@ -1,11 +1,15 @@
 
-import { Component, OnInit, Input, ViewChild, Output, ElementRef, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, Output, ElementRef, OnChanges, SimpleChanges, Injectable } from '@angular/core';
 import { Track } from '../../model/track.model';
 import { MatSlider } from '@angular/material/slider';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { AudioPlayerService } from '../../service/audio-player-service/audio-player.service';
 import { Subject } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root',
+})
 
 @Component({
     selector: 'mat-advanced-audio-player,ngx-audio-player',
@@ -143,7 +147,7 @@ export class AudioPlayerComponent implements OnInit, OnChanges {
 
     }
 
-    public playBtnHandler(): void {
+    playBtnHandler(): void {
         if (this.loaderDisplay) {
             return;
         }
