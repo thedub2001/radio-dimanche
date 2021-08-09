@@ -106,9 +106,11 @@ export class AudioPlayerComponent implements OnInit, OnChanges {
         this.player.nativeElement.addEventListener('playing', () => {
             this.isPlaying = true;
             this.duration = Math.floor(this.player.nativeElement.duration);
+            this.trackPlayed.next('playing');
         });
         this.player.nativeElement.addEventListener('pause', () => {
             this.isPlaying = false;
+            this.trackPaused.next('pause');
         });
         this.player.nativeElement.addEventListener('timeupdate', () => {
             this.currentTime = Math.floor(this.player.nativeElement.currentTime);
@@ -120,9 +122,10 @@ export class AudioPlayerComponent implements OnInit, OnChanges {
         this.player.nativeElement.addEventListener('volume', () => {
             this.volume = Math.floor(this.player.nativeElement.volume);
         });
-        if (!this.iOS) {
+        if (!this.iOS) { // TO DO : find an alternative for iOS ?
             this.player.nativeElement.addEventListener('loadstart', () => {
                 this.loaderDisplay = true;
+                this.trackLoading.next('loading');
             });
         }
         this.player.nativeElement.addEventListener('loadedmetadata', () => {
@@ -132,22 +135,15 @@ export class AudioPlayerComponent implements OnInit, OnChanges {
         this.player.nativeElement.addEventListener('ended', () => {
             this.trackEnded.next('ended');
         });
-        this.player.nativeElement.addEventListener('play', () => {
-            this.trackPlayed.next('playing');
-        });
-        this.player.nativeElement.addEventListener('pause', () => {
-            this.trackPaused.next('pause');
-        });
+
         this.player.nativeElement.addEventListener('canplay', () => {
             this.trackLoaded.next('loaded');
         });
-        this.player.nativeElement.addEventListener('loadeddata', () => {
-            this.trackLoading.next('loading');
-        });
+
 
     }
 
-    playBtnHandler(): void {
+    public playBtnHandler(): void {
         if (this.loaderDisplay) {
             return;
         }
