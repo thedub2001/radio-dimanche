@@ -9,22 +9,22 @@
           The actual rendered columns are set as a property on the row definition" -->
   
       <!-- Name Column -->
-      <ng-container matColumnDef="name">
+      <ng-container matColumnDef="title">
         <th mat-header-cell *matHeaderCellDef> Name </th>
-        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        <td mat-cell *matCellDef="let element">  {{element.title}} </td>
       </ng-container>
   
       <!-- Time Column -->
-      <ng-container matColumnDef="time">
+      <ng-container matColumnDef="duration">
         <th mat-header-cell *matHeaderCellDef> Durée </th>
-        <td mat-cell *matCellDef="let element"> {{element.audio_length}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.duration}} </td>
       </ng-container>
   
       <!-- Action Column -->
       <ng-container matColumnDef="action">
-        <th mat-header-cell *matHeaderCellDef> <mat-icon class="icon-display">playlist_play</mat-icon> </th>
-        <td mat-cell *matCellDef="let element" class="action-link"> 
-          <a (click)="playTrack();"><mat-icon>play_circle_outline</mat-icon></a>
+        <th mat-header-cell *matHeaderCellDef> <mat-icon (click)="playPlaylist();" class="icon-display">playlist_play</mat-icon> </th>
+        <td mat-cell *matCellDef="let element;let indexOfelement=index;" class="action-link"> 
+          <a (click)="playTrack(indexOfelement);"><mat-icon>play_circle_outline</mat-icon></a>
         </td>
       </ng-container>
   

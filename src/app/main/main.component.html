@@ -19,16 +19,36 @@
             <mat-icon (click)="ngxAudioPlayerNext()">fast_forward</mat-icon>
         </mat-grid-tile>
     </mat-grid-list>
+    {{currentTrack.title}}<br>
+    {{currentTrack.artist}}<br>
 
-</div>
+    <button  (click)="isOpen =true" type="button" cdkOverlayOrigin #trigger="cdkOverlayOrigin">
+      <mat-icon class="middle-icon">equalizer</mat-icon>
+    </button>
+    
+    <!-- This template displays the overlay content and is connected to the button -->
+    <ng-template
+      cdkConnectedOverlay
+      [cdkConnectedOverlayOrigin]="trigger"
+      [cdkConnectedOverlayOpen]="isOpen"
+      [cdkConnectedOverlayHasBackdrop]="true"
+      
+      (backdropClick)="isOpen = false"
+    >
+    <mat-slider (change)="isOpen = false" class="example-list" [(ngModel)]="sliderValue"
+      thumbLabel
+        [invert]="false"
+        [max]="10"
+        [min]="0"
+        [step]="1"
+        [vertical]="true">
+    </mat-slider>
+    </ng-template>
+
+  </div>
 </mat-tab>
 
-
-
-<!-- 
-to do : wrap playlists view in it's own component, is player still working ?
-to do : use route snapshot to get to playlis details https://angular.io/tutorial/toh-pt5
-to do : widget to footer ! regarder l'exemple "mixcloud footer widget" à la fin de ce html et ajouter les "style properties" à la fonction "prepareFrame()" de widgetApi.js" -->
+<!-- to do : wrap playlists view in it's own component, is player still working ? -->
 
 <mat-tab label="Episodes">
 <nav>

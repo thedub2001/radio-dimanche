@@ -144,6 +144,36 @@ export class AudioPlayerComponent implements OnInit, OnChanges {
             this.trackLoaded.next('loaded');
         });
 
+        this.player.nativeElement.addEventListener('error', function failed(e) {
+            // audio playback failed - show a message saying why
+            // to get the source of the audio element use $(this).src
+            switch (e.target.error.code) {
+              case e.target.error.MEDIA_ERR_ABORTED:
+                console.log('Player error : You aborted the video playback.');
+                break;
+              case e.target.error.MEDIA_ERR_NETWORK:
+                console.log('Player error : A network error caused the audio download to fail.');
+                break;
+              case e.target.error.MEDIA_ERR_DECODE:
+                console.log('Player error : The audio playback was aborted due to a corruption problem or because the video used features your browser did not support.');
+                break;
+              case e.target.error.MEDIA_ERR_SRC_NOT_SUPPORTED:
+                // Here lives the 401 error : unauthorized
+                // TO DO : resetSong() three times max to avoid infinite loops then go to nextSong() ?
+                console.log('Player error : The video audio not be loaded, either because the server or network failed or because the format is not supported.');
+                setTimeout(() => {
+                    this.resetSong();
+                    setTimeout(() => {
+                        this.player.nativeElement.play();
+                    }, 50);
+                }, 1000);
+                break;
+              default:
+                console.log('Player error : An unknown error occurred.');
+                break;
+            }
+          }.bind(this), false);
+
 
     }
 

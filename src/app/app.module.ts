@@ -52,7 +52,6 @@ import { AccessDeniedComponent } from './access-denied/access-denied.component';
 import {FirebaseService} from './firebase.service';
 import { SoundcloudService } from './soundcloud.service';
 import { MainComponent } from './main/main.component';
-import { McplayerComponent } from './mcplayer/mcplayer.component';
 import { JavascriptComponent } from './javascript/javascript.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
@@ -60,7 +59,7 @@ import { PlaylistComponent } from './playlist/playlist.component';
 import { LiveComponent } from './live/live.component';
 import { EmptyComponent } from './empty/empty.component';
 import { NgxAudioPlayerModule } from 'ngx-audio-player';
-import { VimeModule } from '@vime/angular';
+import {OverlayModule} from '@angular/cdk/overlay';
 
 
 
@@ -99,7 +98,7 @@ import { VimeModule } from '@vime/angular';
     MatDialogModule,
     MatFormFieldModule,
     NgxAudioPlayerModule,
-    VimeModule,
+    OverlayModule,
   ],
   providers:[
     FirebaseService,
@@ -119,7 +118,6 @@ import { VimeModule } from '@vime/angular';
     DialogSignInComponent,
     AccessDeniedComponent,
     MainComponent,
-    McplayerComponent,
     JavascriptComponent,
     AboutComponent,
     ContactComponent,

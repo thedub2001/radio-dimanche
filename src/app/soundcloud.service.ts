@@ -34,7 +34,6 @@ export interface playlistTracksData {
   providedIn: 'root'
 })
 export class SoundcloudService {
-// TO DO : enlever les premières majuscules  de chaque expression
   public soundcloudPlaylists : SoundcloudData[];
   public soundcloudPlaylistsTracksArray=[];
 
@@ -81,12 +80,6 @@ export class SoundcloudService {
       this.dataSource.splice(-1); //ATTENTION : necessary ? delelete the last item that is "setter"
     
     });
-
-
-
-
-    
-    // TO DO : do something with the soundcloudPlaylists array
    }
 
   getSoundcloudUserPlaylists() : Observable<SoundcloudData[]>{
@@ -102,9 +95,11 @@ export class SoundcloudService {
     const tempPlaylistTracks=this.soundcloudPlaylists.find(p=>p.title===playlistName)
     const playlistTracks = tempPlaylistTracks.tracks.map(obj => {
       var rObj = {};
-      rObj["name"] = obj.title;
+      rObj["title"] = obj.title;
       rObj["key"] = obj.id;
-      rObj["audio_length"] = this.secondsToHms(obj.duration/1000);
+      rObj["link"] = obj.stream_url+'?client_id=31478aadfa8f9db41f03ffb13b43a57d';
+      rObj["artist"] = obj.user.username;
+      rObj["duration"] = this.secondsToHms(obj.duration/1000);
       return rObj;
     });
     return playlistTracks;

@@ -1,7 +1,6 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { AudioPlayerComponent } from 'ngx-audio-player';
+import { AudioPlayerComponent , Track} from 'ngx-audio-player';
 import { SoundcloudService } from '../soundcloud.service';
-
 
 @Component({
   selector: 'app-main',
@@ -23,6 +22,11 @@ export class MainComponent implements AfterViewInit, OnInit  {
   public play : boolean = false;
   public loaded : boolean = false;
   public pause : boolean = false;
+  public currentTrack : Track = {title:"",link:""};
+  isOpen=false;
+  sliderValue=5;
+  public tempTest=0;
+
 
   msaapDisplayTitle = false;
   msaapDisplayPlayList = false;
@@ -50,8 +54,6 @@ export class MainComponent implements AfterViewInit, OnInit  {
     this.ngxPlayer.nextSong();
   }
 
-
-
   ngAfterViewInit(): void {
   }
 
@@ -63,6 +65,7 @@ export class MainComponent implements AfterViewInit, OnInit  {
     console.log("onPlayed :",e);
     this.play=true;
     this.pause = false;
+
   }
   
   onPaused(e) : void {
@@ -76,12 +79,15 @@ export class MainComponent implements AfterViewInit, OnInit  {
     this.loaded=true;
     this.play=false;
     this.pause = true;   
+    this.currentTrack=this.ngxPlayer.tracks[this.ngxPlayer.currentIndex];
+
   }
 
   onLoading(e) : void {
     console.log("onLoading :",e);
     this.play=false;
     this.loaded=false;
+
   }
 
  }
