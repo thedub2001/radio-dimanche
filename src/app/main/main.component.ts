@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AudioPlayerComponent , Track} from 'ngx-audio-player';
 import { SoundcloudService } from '../soundcloud.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main',
@@ -36,8 +37,10 @@ export class MainComponent implements AfterViewInit, OnInit  {
   msaapDisplayArtist = false;
   msaapDisplayDuration = false;
   msaapDisablePositionSlider = false;
+  currentIndex: number;
+  tabIndex : number =0;
 
-  constructor(public sc : SoundcloudService) {}
+  constructor(public sc : SoundcloudService,public router : Router) {}
 
   ngOnInit(): void {
   }
@@ -80,6 +83,7 @@ export class MainComponent implements AfterViewInit, OnInit  {
     this.play=false;
     this.pause = true;   
     this.currentTrack=this.ngxPlayer.tracks[this.ngxPlayer.currentIndex];
+    this.currentIndex=this.ngxPlayer.currentIndex;
 
   }
 
@@ -88,6 +92,17 @@ export class MainComponent implements AfterViewInit, OnInit  {
     this.play=false;
     this.loaded=false;
 
+  }
+
+  navigateToPlaylist(p) : void {
+    console.log(p);
+    this.router.navigate(['./playlist',p]);
+    // TO DO : naviguer jusqu'a la playlist comme [routerLink]="['playlist', element.title]" en html
+    
+  }
+
+  changeTabIndex(n) : void {
+    this.tabIndex=n;
   }
 
  }

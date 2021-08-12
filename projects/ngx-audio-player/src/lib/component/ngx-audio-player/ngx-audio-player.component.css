@@ -53,6 +53,15 @@ table {
     border-left: 1px solid rgba(0,0,0,.1);
 }
 
+.volume-overlay {
+    border: solid 1px #ccc;
+    border-radius: 5px;
+    background: #fff;
+    text-align: center;
+    padding: 10px;
+    margin: 0;
+  }
+
 .skip-next {
     border-right: 1px solid rgba(0,0,0,.1);
 }

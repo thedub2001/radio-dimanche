@@ -1,4 +1,4 @@
-<mat-tab-group>
+<mat-tab-group [selectedIndex]="tabIndex" (selectedIndexChange)="tabIndex=$event">
     <mat-tab label="Radio">
 
 <div 	style="margin-top:10%;">
@@ -21,29 +21,12 @@
     </mat-grid-list>
     {{currentTrack.title}}<br>
     {{currentTrack.artist}}<br>
-
-    <button  (click)="isOpen =true" type="button" cdkOverlayOrigin #trigger="cdkOverlayOrigin">
-      <mat-icon class="middle-icon">equalizer</mat-icon>
-    </button>
-    
-    <!-- This template displays the overlay content and is connected to the button -->
-    <ng-template
-      cdkConnectedOverlay
-      [cdkConnectedOverlayOrigin]="trigger"
-      [cdkConnectedOverlayOpen]="isOpen"
-      [cdkConnectedOverlayHasBackdrop]="true"
-      
-      (backdropClick)="isOpen = false"
-    >
-    <mat-slider (change)="isOpen = false" class="example-list" [(ngModel)]="sliderValue"
-      thumbLabel
-        [invert]="false"
-        [max]="10"
-        [min]="0"
-        [step]="1"
-        [vertical]="true">
-    </mat-slider>
-    </ng-template>
+    <div *ngIf="sc.dataSource[currentIndex]">
+      Playlist : {{sc.dataSource[currentIndex].playlistTitle}}     
+      <button mat-icon-button class="more-button" (click)="detailActivated=true;changeTabIndex(1);" [routerLink]="['playlist',sc.dataSource[currentIndex].playlistTitle]">
+        <mat-icon>navigate_next</mat-icon>
+      </button>
+    </div>
 
   </div>
 </mat-tab>
@@ -52,7 +35,7 @@
 
 <mat-tab label="Episodes">
 <nav>
-  <a *ngIf="detailActivated" routerLink="/home" routerLinkActive="active " (click)="detailActivated=false" >Retour à la liste</a>
+  <a *ngIf="detailActivated" routerLink="/home" routerLinkActive="active " (click)="detailActivated=false" >Retour aux playlists</a>
 </nav>
 
   <router-outlet></router-outlet>

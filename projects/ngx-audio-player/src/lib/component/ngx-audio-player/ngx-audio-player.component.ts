@@ -85,8 +85,11 @@ export class AudioPlayerComponent implements OnInit, OnChanges {
     loaderDisplay = false;
     isPlaying = false;
     currentTime = 0;
-    volume = 0.1;
+    // When the html5 audio starts, the initial volume value is 1
+    volume = 1;
     duration = 0.01;
+    // Overlay state for volume change
+    isOpen=false;
 
     private startOffsetValue = 0;
     @Input()
@@ -124,7 +127,7 @@ export class AudioPlayerComponent implements OnInit, OnChanges {
             // }
         });
         this.player.nativeElement.addEventListener('volume', () => {
-            this.volume = Math.floor(this.player.nativeElement.volume);
+           // this.volume = Math.floor(this.player.nativeElement.volume);
         });
         if (!this.iOS) { // TO DO : find an alternative for iOS ?
             this.player.nativeElement.addEventListener('loadstart', () => {
@@ -214,6 +217,10 @@ export class AudioPlayerComponent implements OnInit, OnChanges {
         } else {
             this.setVolume(0);
         }
+    }
+
+    changeVolume(e) {
+        this.setVolume(e.value);
     }
 
     toggleRepeat() {

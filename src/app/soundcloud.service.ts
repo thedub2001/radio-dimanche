@@ -51,13 +51,14 @@ export class SoundcloudService {
       this.soundcloudPlaylists=n;
       this.soundcloudPlaylists.forEach(function (value: any,item:number) {
         // console.log(value.url);
+        var playlistTitle=value.title;
         value.tracks.forEach(function (value: any,item:number) {
-          
           this.soundcloudPlaylistsTracksArray.push({
             title:value.title,
             link:value.stream_url+'?client_id=31478aadfa8f9db41f03ffb13b43a57d',
             duration:value.duration,
-            artist:value.user.username
+            artist:value.user.username,
+            playlistTitle:playlistTitle
           })
         },this);
 
@@ -100,6 +101,8 @@ export class SoundcloudService {
       rObj["link"] = obj.stream_url+'?client_id=31478aadfa8f9db41f03ffb13b43a57d';
       rObj["artist"] = obj.user.username;
       rObj["duration"] = this.secondsToHms(obj.duration/1000);
+      rObj["playlistTitle"] = playlistName;
+
       return rObj;
     });
     return playlistTracks;
