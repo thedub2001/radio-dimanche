@@ -119,7 +119,7 @@ table {
     padding-right: .25rem !important;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
     .ngx-sm-block {
         display: block !important;
     }
