@@ -135,7 +135,8 @@
 
             <div class="ngx-py-3 ngx-px-1" style="font-size: 12px; text-align: right">
                 <span *ngIf="duration !== 0.01">
-                    <!-- -{{duration-currentTime | secondsToMinutes }} -->
+                    <!-- Enhancement : we could toggle between "-{{duration-currentTime | secondsToMinutes }}" and "{{duration | secondsToMinutes }}" by clicking on the activated one
+                         -{{duration-currentTime | secondsToMinutes }} -->
                     {{duration | secondsToMinutes }}
                 </span>
             </div>

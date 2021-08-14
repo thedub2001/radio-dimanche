@@ -6,7 +6,7 @@
         Coucou !
     </mat-toolbar>
 
-    <mat-nav-list>
+    <mat-nav-list *ngIf="v2">
 
 
       <h2 matSubheader> Sous-section </h2>
@@ -29,7 +29,7 @@
     <!--     Let 60px free space at the bottom of the page for the footer music player   -->
     <mat-toolbar color="primary" class="mat-elevation-z10" style="justify-content: space-between;z-index:2;">
 
-        <button
+        <button *ngIf="v2"
           type="button"
           aria-label="Toggle sidenav"
           mat-icon-button
@@ -38,7 +38,7 @@
           <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
         </button>
 
-        <span >
+        <span style="margin-left: auto;margin-right: auto;">
           <img top="0" style="max-width: 80%;height: auto;display: block;margin-left: auto;margin-right: auto;margin-top:5%;" src="../assets/img/dimanche_flaticon.svg">
         </span>
         <span hidden>{{(fs.auth.user | async)?.email}}</span>
@@ -57,7 +57,7 @@
 
 <!-- issue : the login button stay focused when closing the dialog box
      workaround : use onclick="this.blur()" method on the login button -->
-
+        <div *ngIf="v2">
         <button
           *ngIf="(fs.signedInBoolean | async)==0"
           type="button"
@@ -85,7 +85,7 @@
           >
           <mat-icon>no-icon</mat-icon>
         </button>
-
+        </div>
     </mat-toolbar>
 
     <!-- Add Content Here -->

@@ -1,35 +1,41 @@
-<mat-tab-group [selectedIndex]="tabIndex" (selectedIndexChange)="tabIndex=$event">
-    <mat-tab label="Radio">
+<mat-toolbar  color="primary" class="mat-elevation-z10" style="justify-content: space-between;z-index:2;height:56px;">
+  <span style="margin-left: auto;margin-right: auto;">
+    <img top="0" style="max-width: 80%;height: auto;display: block;margin-left: auto;margin-right: auto;margin-top:5%;" src="../assets/img/dimanche_flaticon.svg">
+  </span>
+</mat-toolbar>
 
-<div 	style="margin-top:10%;">
+<mat-tab-group style="height:calc(100% - 52px - 56px)" [selectedIndex]="tabIndex" (selectedIndexChange)="tabIndex=$event">
+  <mat-tab label="Radio">
 
-    <mat-grid-list cols="3" rowHeight="200px">  
-        <mat-grid-tile>
-            <mat-icon (click)="ngxAudioPlayerPrevious()">fast_rewind</mat-icon>
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <div *ngIf="loaded">
-                <mat-icon *ngIf="pause" (click)="ngxAudioPlayerPlay()" class='big-icon'>play_circle</mat-icon>
-                <mat-icon *ngIf="play" (click)="ngxAudioPlayerPlay()" class='big-icon'>pause_circle</mat-icon>
-            </div>
-            
-            <mat-spinner *ngIf="!loaded"></mat-spinner>
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <mat-icon (click)="ngxAudioPlayerNext()">fast_forward</mat-icon>
-        </mat-grid-tile>
-    </mat-grid-list>
-    {{currentTrack.title}}<br>
-    {{currentTrack.artist}}<br>
-    <div *ngIf="sc.dataSource[currentIndex]">
-      Playlist : {{sc.dataSource[currentIndex].playlistTitle}}     
-      <button mat-icon-button class="more-button" (click)="detailActivated=true;changeTabIndex(1);" [routerLink]="['playlist',sc.dataSource[currentIndex].playlistTitle]">
-        <mat-icon>navigate_next</mat-icon>
-      </button>
-    </div>
+    <div 	style="margin-top:10%;">
 
-  </div>
-</mat-tab>
+        <mat-grid-list cols="3" rowHeight="200px">  
+            <mat-grid-tile>
+                <mat-icon (click)="ngxAudioPlayerPrevious()">fast_rewind</mat-icon>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <div *ngIf="loaded">
+                    <mat-icon *ngIf="pause" (click)="ngxAudioPlayerPlay()" class='big-icon'>play_circle</mat-icon>
+                    <mat-icon *ngIf="play" (click)="ngxAudioPlayerPlay()" class='big-icon'>pause_circle</mat-icon>
+                </div>
+                
+                <mat-spinner *ngIf="!loaded"></mat-spinner>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-icon (click)="ngxAudioPlayerNext()">fast_forward</mat-icon>
+            </mat-grid-tile>
+        </mat-grid-list>
+        {{currentTrack.title}}<br>
+        {{currentTrack.artist}}<br>
+        <div *ngIf="sc.dataSource[currentIndex]">
+          Playlist : {{sc.dataSource[currentIndex].playlistTitle}}     
+          <button mat-icon-button class="more-button" (click)="detailActivated=true;changeTabIndex(1);" [routerLink]="['playlist',sc.dataSource[currentIndex].playlistTitle]">
+            <mat-icon>navigate_next</mat-icon>
+          </button>
+        </div>
+
+      </div>
+  </mat-tab>
 
 <!-- to do : wrap playlists view in it's own component, is player still working ? -->
 

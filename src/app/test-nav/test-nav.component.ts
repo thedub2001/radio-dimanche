@@ -20,6 +20,7 @@ export class TestNavComponent implements OnInit {
 
   public signedIn : boolean;
   public viewLoaded : boolean = false;
+  v2=false;
   
   @ViewChild('LoginButton') LoginButton: ElementRef; // for educational purpose
 
