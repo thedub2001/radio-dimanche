@@ -11,7 +11,7 @@
 
         <mat-grid-list cols="3" rowHeight="200px">  
             <mat-grid-tile>
-                <mat-icon (click)="ngxAudioPlayerPrevious()">fast_rewind</mat-icon>
+                <mat-icon (click)="ngxAudioPlayerPrevious()" class='middle-icon'>fast_rewind</mat-icon>
             </mat-grid-tile>
             <mat-grid-tile>
                 <div *ngIf="loaded">
@@ -22,7 +22,7 @@
                 <mat-spinner *ngIf="!loaded"></mat-spinner>
             </mat-grid-tile>
             <mat-grid-tile>
-                <mat-icon (click)="ngxAudioPlayerNext()">fast_forward</mat-icon>
+                <mat-icon (click)="ngxAudioPlayerNext()" class='middle-icon'>fast_forward</mat-icon>
             </mat-grid-tile>
         </mat-grid-list>
         {{currentTrack.title}}<br>

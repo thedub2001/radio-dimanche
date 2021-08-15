@@ -9,16 +9,16 @@
  }
 
  .big-icon{
-   font-size: 200px;
-   height: 200px;
-   width: 200px;
-   line-height: 200px;
+   font-size: 20vw;
+   height: 20vw;
+   width: 20vw;
+   line-height: 20vw;
 }
 .middle-icon{
-   font-size: 100px;
-   height: 100px;
-   width: 100px;
-   line-height: 100px;
+   font-size: 10vw;
+   height: 10vw;
+   width: 10vw;
+   line-height: 10vw;
 }
 
  .example-list {
