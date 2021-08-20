@@ -4,7 +4,7 @@
   </span>
 </mat-toolbar>
 
-<mat-tab-group style="height:calc(100% - 52px - 56px)" [selectedIndex]="tabIndex" (selectedIndexChange)="tabIndex=$event">
+<mat-tab-group class="footer-dependant" [selectedIndex]="tabIndex" (selectedIndexChange)="tabIndex=$event">
   <mat-tab label="Radio">
 
     <div 	style="margin-top:10%;">
@@ -89,8 +89,11 @@
 <!-- <mat-tab label="LIVE"> Content 5 </mat-tab> -->
 </mat-tab-group>
 
-<footer fxFlex="52px" fxLayoutAlign="center center" class="footer">
-  <div  id="player" style="position: fixed; left: 0; bottom: 0; right: 0; height: 52px; z-index: 10">
+<!-- <footer fxFlex="52px" fxLayoutAlign="center center" class="footer">
+  <div  id="player" style="position: fixed; left: 0; bottom: 0; right: 0; height: 52px; z-index: 10"> -->
+
+<footer  fxLayoutAlign="center center" class="footer">
+  <div style="position: fixed;left: 0; bottom: 0; right: 0;" id="player">
     
     <ngx-audio-player [playlist]="sc.dataSource" [displayTitle]="msaapDisplayTitle" [autoPlay]="false" 
       muted="muted" [displayPlaylist]="msaapDisplayPlayList" [pageSizeOptions]="msaapPageSizeOptions" (trackEnded)="onEnded($event)"  (trackPlayed)="onPlayed($event)" (trackPaused)="onPaused($event)" (trackLoaded)="onLoaded($event)" (trackLoading)="onLoading($event)"

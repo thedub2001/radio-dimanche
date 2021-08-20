@@ -22,3 +22,10 @@ body, input[type="text"], button {
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* workaround to fix "miniplayer" mat-slider height in <ngx-audio-player> */
+@media (max-width: 444px) {
+  #track-slider .mat-slider-wrapper {
+    top: 13px!important;
+  }
+}

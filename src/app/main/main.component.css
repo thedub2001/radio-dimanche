@@ -29,4 +29,15 @@
    padding: 10px;
    margin: 0;
  }
- 
+
+ /* Adapt the main content to the ngx-audio-player footer*/
+  .footer-dependant {
+   height:calc(100% - 52px - 56px);
+ }
+
+ /* Adapt the main content to the ngx-audio "miniplayer" footer */
+ @media (max-width: 444px) {
+   .footer-dependant {
+      height:calc(100% - 28px - 56px);
+    }
+ }
