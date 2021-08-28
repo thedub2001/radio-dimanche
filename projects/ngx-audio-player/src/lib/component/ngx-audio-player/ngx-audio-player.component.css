@@ -134,8 +134,8 @@ table {
 @media (max-width: 444px) {
 
     .miniplayer-svg {
-        height: 12px;
-        width: 12px;
+        height: 18px;
+        width: 18px;
     }
 
     .ngx-sm-block {

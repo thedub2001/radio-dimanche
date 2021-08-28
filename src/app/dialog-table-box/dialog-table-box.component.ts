@@ -10,7 +10,7 @@ export interface UsersData {
 @Component({
   selector: 'app-dialog-table-box',
   templateUrl: './dialog-table-box.component.html',
-  styleUrls: ['./dialog-table-box.component.css']
+  styleUrls: ['./dialog-table-box.component.scss']
 })
 export class DialogTableBoxComponent {
 

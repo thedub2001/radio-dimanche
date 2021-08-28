@@ -8,7 +8,7 @@ import { finalize } from 'rxjs/operators';
 @Component({
   selector: 'app-dialog-write',
   templateUrl: './dialog-write.component.html',
-  styleUrls: ['./dialog-write.component.css']
+  styleUrls: ['./dialog-write.component.scss']
 })
 
 export class DialogWriteComponent {

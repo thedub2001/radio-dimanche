@@ -12,7 +12,7 @@ import { DialogRecordComponent } from '../dialog-record/dialog-record.component'
 @Component({
   selector: 'app-taradio',
   templateUrl: './taradio.component.html',
-  styleUrls: ['./taradio.component.css']
+  styleUrls: ['./taradio.component.scss']
 })
 export class TaradioComponent implements OnInit {
 

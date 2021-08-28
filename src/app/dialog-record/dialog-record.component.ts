@@ -7,7 +7,7 @@ import { finalize } from 'rxjs/operators';
 @Component({
   selector: 'app-dialog-record',
   templateUrl: './dialog-record.component.html',
-  styleUrls: ['./dialog-record.component.css']
+  styleUrls: ['./dialog-record.component.scss']
 })
 
 export class DialogRecordComponent {

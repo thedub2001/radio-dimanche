@@ -8,7 +8,7 @@ import { FirebaseService } from '../firebase.service';
 @Component({
   selector: 'app-dialog-sign-in',
   templateUrl: './dialog-sign-in.component.html',
-  styleUrls: ['./dialog-sign-in.component.css']
+  styleUrls: ['./dialog-sign-in.component.scss']
 })
 
 export class DialogSignInComponent implements OnInit, OnDestroy {

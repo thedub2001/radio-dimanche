@@ -7,7 +7,7 @@ import { finalize } from 'rxjs/operators';
 @Component({
   selector: 'app-dialog-upload',
   templateUrl: './dialog-upload.component.html',
-  styleUrls: ['./dialog-upload.component.css']
+  styleUrls: ['./dialog-upload.component.scss']
 })
 
 export class DialogUploadComponent {

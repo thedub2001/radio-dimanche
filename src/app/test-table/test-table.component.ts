@@ -7,7 +7,7 @@ import { TestTableDataSource, TestTableItem } from './test-table-datasource';
 @Component({
   selector: 'app-test-table',
   templateUrl: './test-table.component.html',
-  styleUrls: ['./test-table.component.css']
+  styleUrls: ['./test-table.component.scss']
 })
 export class TestTableComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;

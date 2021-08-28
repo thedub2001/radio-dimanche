@@ -4,12 +4,11 @@ import { ActivatedRoute } from '@angular/router';
 import { MainComponent } from '../main/main.component';
 
 @Component({
-  selector: 'app-playlist',
-  templateUrl: './playlist.component.html',
-  styleUrls: ['./playlist.component.scss']
+  selector: 'app-dialog-playlist',
+  templateUrl: './dialog-playlist.component.html',
+  styleUrls: ['./dialog-playlist.component.scss']
 })
-
-export class PlaylistComponent implements OnInit {
+export class DialogPlaylistComponent implements OnInit {
   
   playlistName : string;
   dataSource = [];

@@ -5,7 +5,7 @@ import {AfterViewInit, ElementRef, ViewChild} from '@angular/core';
 @Component({
   selector: 'javascript',
   templateUrl: './javascript.component.html',
-  styleUrls: ['./javascript.component.css']
+  styleUrls: ['./javascript.component.scss']
 })
 
 

@@ -60,6 +60,7 @@ import { LiveComponent } from './live/live.component';
 import { EmptyComponent } from './empty/empty.component';
 import { NgxAudioPlayerModule } from 'ngx-audio-player';
 import {OverlayModule} from '@angular/cdk/overlay';
+import { DialogPlaylistComponent } from './dialog-playlist/dialog-playlist.component';
 
 
 
@@ -124,6 +125,7 @@ import {OverlayModule} from '@angular/cdk/overlay';
     PlaylistComponent,
     LiveComponent,
     EmptyComponent,
+    DialogPlaylistComponent,
 
   ],
     entryComponents: [

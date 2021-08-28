@@ -18,7 +18,7 @@ const ELEMENT_DATA: UsersData[] = [
 @Component({
   selector: 'app-dialog-table',
   templateUrl: './dialog-table.component.html',
-  styleUrls: ['./dialog-table.component.css']
+  styleUrls: ['./dialog-table.component.scss']
 })
 export class DialogTableComponent {
   displayedColumns: string[] = ['id', 'name', 'action'];

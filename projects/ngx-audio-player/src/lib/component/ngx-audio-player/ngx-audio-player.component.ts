@@ -227,6 +227,11 @@ export class AudioPlayerComponent implements OnInit, OnChanges {
         if (this.repeat === 'none') {
             this.repeat = 'all';
         } else if (this.repeat === 'all') {
+            this.repeat = 'none';
+        }
+        
+/*         Disabled "one" repeat function */
+/*         else if (this.repeat === 'all') {
             if (this.tracks.length > 1) {
                 this.repeat = 'one';
             } else {
@@ -234,7 +239,7 @@ export class AudioPlayerComponent implements OnInit, OnChanges {
             }
         } else if (this.repeat === 'one' && this.tracks.length > 1) {
             this.repeat = 'none';
-        }
+        } */
     }
 
     private setVolume(vol) {
