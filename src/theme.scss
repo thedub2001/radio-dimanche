@@ -1,0 +1,339 @@
+// examples :
+// https://stackblitz.com/edit/angular-material-custom-background?file=app%2Fapp.component.html
+// https://stackblitz.com/edit/material-theme-demo-10-themes?file=src%2Fapp%2Fapp.component.ts
+// https://newbedev.com/angular-material2-theming-how-to-set-app-background
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic&subset=latin-ext');
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic&amp;subset=latin-ext');
+
+@import '~@angular/material/theming';
+@debug ""; // empty line for better console reading
+
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://www.google.com/design/spec/style/color.html
+
+$general-typography: mat-typography-config(
+  $font-family:   'Roboto, "Helvetica Neue", sans-serif',
+  $display-4:     mat-typography-level(112px, 112px, 300),
+  $display-3:     mat-typography-level(56px, 56px, 400),
+  $display-2:     mat-typography-level(45px, 48px, 400),
+  $display-1:     mat-typography-level(34px, 40px, 400),
+  $headline:      mat-typography-level(24px, 32px, 400),
+  $title:         mat-typography-level(20px, 32px, 500),
+  $subheading-2:  mat-typography-level(16px, 22px, 500),
+  $subheading-1:  mat-typography-level(15px, 24px, 400),
+  $body-2:        mat-typography-level(14px, 24px, 500),
+  $body-1:        mat-typography-level(14px, 30px, 400),
+  $caption:       mat-typography-level(12px, 20px, 400),
+  $button:        mat-typography-level(14px, 14px, 500),
+    // Line-height must be unit-less fraction of the font-size.
+  $input:         mat-typography-level(inherit, 1.125, 400)
+
+);
+
+$secondary-typography: mat-typography-config(
+  $font-family: 'Roboto, sans-serif'
+);
+
+@include mat-core();
+//@include mat-core($general-typography);
+// Override typography for all Angular Material, including mat-base-typography and all components.
+@include angular-material-typography($general-typography);
+
+
+
+//@include mat-core();
+
+
+
+// Introduction to Angular-Material Themes you are missing:
+
+//Why such simple thing like colors could get so complicated for newcomers?
+//Yeah I can copy paste the boiler plate from documentation and it works
+//for some degree. But if we must adjust it then even the stackoverflow fails to help.
+//We end up overriding CSS with color and background-color properties.
+//
+//But its really not that difficult it's just missing the proper description.
+//
+//Necessary shift in mind set
+//
+//You are the painter!
+//First of all, the material themes are color driven, not design driven.
+//Material themes are color driven, not design driven - it must sink into your mind.
+//think about it: how do you paint?
+//First of all you load your painting palette with colors you want to use.
+//So you know in advance before your picture exists and it is essential to realize.
+//
+//If you are a painter you realize that the picture to look nice is driven by principles.
+//Principles like:
+//Father objects are more faded and closer ones are more visible, intense.
+//Most of the picture colors is in one primary tone.
+//There are some accents in the picture using contrast color to drive viewer attention.
+//
+//You are not allowing to use any random colors but only the colors that match above principles.
+//Technically you can use every color on your palette but you require them in special form to make
+//your picture effective.
+//
+//The material colors are all about a way to separate design from colors.
+//This is the problem it solves. And if you think in this category your work becomes much easier.
+//Hmmm How would I set color of the button if I want to keep that color separated from the design?
+//
+//So we can correct our above statement: Angular-material is a painter and you are.. "painter palette loader".
+//Angular-material is educated and skilled painter and you have to supply needed colors.
+//If your colors does not fulfill principles your painter will produce ineffective pictures.
+//
+//Now little more theory:
+//
+//What is Palette??
+//
+//According to material design your website has one primary color in multiple hues and shadows
+//In angular-material single color with hues and shadows defined it's called palette.
+//The main goal of palette is to define hues and shadows for only one color.
+//
+//One palette - one color.
+//
+//Every palette has the smooth range of shadows from brightest to darkest
+//Background colors defined: 50 - brightest, 900 - darkest
+//Corresponding text colors: contrast.50 - darkest, contrast.900 - brightest
+//So the every shadow/hue comes always together with contrast. They can not mix later after once paired
+//
+//There is also one additional set of hues called "accents" in the palette, we can recognize
+//them by A in front of them like: A100, A200, A400, A700.
+//These colors should stand ahead (be bit more visible) of the main non-accent colors
+//The range of accent colors is also limited to just 4 hues/shadows
+//So if the there are elements on the same level let say on side-navigation.
+//The buttons like: Read more, bookmark, buy now, if you want to accent 'buy now' you
+//would use accent.
+//Accents are because you achieve the goal of marketing and design in one.
+//
+//What is angular-material theme
+//The angular material theme is a combination of palettes assigned to certain
+//meaning.
+//
+//We can combine 3 of palettes each with different purpose to create theme
+//I believe this is the 90% case for most websites/apps.
+//
+//Primary palette
+//This is palette used as main color of the application.
+//You can think about this palette as the color of the suit and shirt
+//
+//Accent palette
+//This is palette used as accent color of the application.
+//You can think about this palette as the color of the tie to your suit
+//
+//Hold on?! Didn't we discussed accents before in palette section?!
+//Hmm yeah, But that is on different scale - it's little bit like each palette
+//has accent (more visible hue) and each theme has more visible outstanding palette.
+//This gives far more flexibility and make color to do the important interface work.
+//Analogy: ###
+
+$mat-grey-example: (
+  // Non-accent Backgrounds
+  // General
+  50: #fafafa,   // Most far away
+  100: #f5f5f5,  // Far far away
+  200: #eeeeee,  // Far away
+  300: #e0e0e0,  // Middle far
+  400: #bdbdbd,  // Middle
+  500: #9e9e9e,  // Middle close
+  600: #757575,  // Close
+  700: #616161,  // Very close
+  800: #424242,  // Very very Close    1
+  900: #212121,  // Closest
+  // Accent Background (calling for user action, notice, feedback/response)
+  // Texts, fields, cursors, selections, progress, buttons
+  A100: #ffffff,  // Most far away
+  A200: #eeeeee,  // Middle
+  A400: #bdbdbd,  // Close
+  A700: #616161,  // Closest
+  contrast: (
+    // Non-accent Texts - it's a contrast array opposite to the background for
+    // text coloring.
+    // General
+    50: $dark-primary-text,   // Most far away
+    100: $dark-primary-text,  // Far far away
+    200: $dark-primary-text,  // Far away
+    300: $dark-primary-text,  // Middle far
+    400: $dark-primary-text,  // Middle
+    500: $dark-primary-text,  // Middle close
+    600: $light-primary-text, // Close
+    700: $light-primary-text, // Very close
+    800: $light-primary-text, // Very very Close    1
+    900: $light-primary-text, // Closest
+    // Accent Texts (calling for user action, notice, feedback/response)
+    // Texts, fields, cursors, selections, progress, buttons
+    A100: $dark-primary-text,   // Most far away
+    A200: $dark-primary-text,   // Middle
+    A400: $dark-primary-text,   // Close
+    A700: $light-primary-text,  // Closest
+  )
+);
+
+$mat-example: (
+  // Backgrounds
+  50: #aec4c7,
+  100: #8bb7be,
+  200: #57a2ae,
+  300: #3e96a7,
+  400: #1e8b9d,
+  500: #0090a8,
+  600: #007a8d,
+  700: #006a7a,
+  800: #00616d,
+  900: #004f53,
+  A100: #73d7d7,
+  A200: #12b1b1,
+  A400: #008b9a,
+  A700: #00667a,
+  contrast: (
+    // Texts
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $light-primary-text,
+    A200: $light-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text,
+  )
+);
+
+$example-primary: mat-palette($mat-grey-example);
+$example-accent:  mat-palette($mat-example, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$example-warn:    mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$example-theme: mat-light-theme($example-primary, $example-accent, $example-warn);
+
+// Set custom background color
+$custom-background-color: map_get($mat-blue-grey, 50);
+
+// -or- Can set colour by hex value too
+$custom-background-color: #628cc9;
+
+$background: map-get($example-theme, background);
+
+$background: map_merge($background, (background: $custom-background-color));
+
+$example-theme: map_merge($example-theme, (background: $background));
+
+// To apply the background to the whole app : just put the classes on your body or app: <body class="mat-typography mat-app-background"> (https://github.com/angular/components/issues/6244#issuecomment-591390543)
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($example-theme);
+
+
+
+// theme-2
+$theme-2-primary: mat-palette($mat-blue-grey);
+$theme-2-accent:  mat-palette($mat-amber, A200, A100, A400);
+$theme-2-warn:    mat-palette($mat-deep-orange);
+
+$theme-2-theme:   mat-dark-theme($theme-2-primary, $theme-2-accent, $theme-2-warn);
+
+.theme-2-theme {
+  @include angular-material-theme($theme-2-theme);
+}
+
+// theme-3
+$theme-3-primary: mat-palette($mat-grey, 200, 500, 300);
+$theme-3-accent: mat-palette($mat-brown, 200);
+$theme-3-warn: mat-palette($mat-deep-orange, 200);
+
+$theme-3-theme: mat-light-theme($theme-3-primary, $theme-3-accent, $theme-3-warn);
+
+.theme-3-theme {
+  @include angular-material-theme($theme-3-theme)
+}
+
+
+// theme-4
+$theme-4-primary: mat-palette($mat-blue);
+$theme-4-accent:  mat-palette($mat-light-blue, A200, A100, A400);
+$theme-4-warn:    mat-palette($mat-deep-orange);
+
+$theme-4-theme:   mat-light-theme($theme-4-primary, $theme-4-accent, $theme-4-warn);
+
+.theme-4-theme {
+  @include angular-material-theme($theme-4-theme);
+}
+
+// theme-5
+$theme-5-primary: mat-palette($mat-blue-grey);
+$theme-5-accent:  mat-palette($mat-blue, A200, A100, A400);
+$theme-5-warn:    mat-palette($mat-deep-orange);
+
+$theme-5-theme:   mat-light-theme($theme-5-primary, $theme-5-accent, $theme-5-warn);
+
+.theme-5-theme {
+  @include angular-material-theme($theme-5-theme);
+}
+
+// theme-6
+$theme-6-primary: mat-palette($mat-light-blue);
+$theme-6-accent:  mat-palette($mat-blue, A200, A100, A400);
+$theme-6-warn:    mat-palette($mat-deep-orange);
+
+$theme-6-theme:   mat-light-theme($theme-6-primary, $theme-6-accent, $theme-6-warn);
+
+.theme-6-theme {
+  @include angular-material-theme($theme-6-theme);
+}
+
+
+// theme-7
+$theme-7-primary: mat-palette($mat-gray);
+$theme-7-accent:  mat-palette($mat-blue, A200, A100, A400);
+$theme-7-warn:    mat-palette($mat-deep-orange);
+
+$theme-7-theme:   mat-light-theme($theme-7-primary, $theme-7-accent, $theme-7-warn);
+
+.theme-7-theme {
+  @include angular-material-theme($theme-7-theme);
+}
+
+
+// theme-8
+$theme-8-primary: mat-palette($mat-grey);
+$theme-8-accent:  mat-palette($mat-blue-grey, A200, A100, A400);
+$theme-8-warn:    mat-palette($mat-deep-orange);
+
+$theme-8-theme:   mat-light-theme($theme-8-primary, $theme-8-accent, $theme-8-warn);
+
+.theme-8-theme {
+  @include angular-material-theme($theme-8-theme);
+}
+
+
+// theme-9
+$theme-9-primary: mat-palette($mat-orange);
+$theme-9-accent:  mat-palette($mat-blue-grey, A200, A100, A400);
+$theme-9-warn:    mat-palette($mat-deep-orange);
+
+$theme-9-theme:   mat-light-theme($theme-9-primary, $theme-9-accent, $theme-9-warn);
+
+.theme-9-theme {
+  @include angular-material-theme($theme-9-theme);
+}
+
+
+
+
+
