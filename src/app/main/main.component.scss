@@ -6,37 +6,70 @@
     font-size: large;
     overflow: hidden;
     z-index: -1;
- }
-
- .big-icon{
-   font-size: 20vw;
-   height: 20vw;
-   width: 20vw;
-   line-height: 20vw;
 }
+
+ .big-button{
+  font-size: 20vw;
+  height: 20vw;
+  width: 20vw;
+}
+
+.big-icon{
+  font-size: 20vw;
+  height: 20vw;
+  width: 20vw;
+  line-height: normal!important;
+}
+
+.middle-button{
+  font-size: 10vw;
+  height: 10vw;
+  width: 10vw;
+}
+
 .middle-icon{
-   font-size: 10vw;
-   height: 10vw;
-   width: 10vw;
-   line-height: 10vw;
+  font-size: 10vw;
+  height: 10vw;
+  width: 10vw;
+  line-height: normal!important;
 }
 
- .example-list {
-   border: solid 1px #ccc;
-   border-radius: 5px;
-   text-align: center;
-   padding: 10px;
-   margin: 0;
- }
+.example-list {
+  border: solid 1px #ccc;
+  border-radius: 5px;
+  text-align: center;
+  padding: 10px;
+  margin: 0;
+}
 
  /* Adapt the main content to the ngx-audio-player footer*/
-  .footer-dependant {
-   height:calc(100% - 52px - 56px);
- }
+.footer-dependant {
+  height:calc(100% - 52px - 56px);
+}
 
  /* Adapt the main content to the ngx-audio "miniplayer" footer */
- @media (max-width: 444px) {
-   .footer-dependant {
-      height:calc(100% - 28px - 56px);
-    }
- }
+@media (max-width: 444px) {
+  .footer-dependant {
+    height:calc(100% - 28px - 56px);
+  }
+}
+
+.logoFrame {
+  height: 100vh;
+  width: 100vw;
+  text-align: center;
+  position: absolute;
+  overflow:hidden;
+}
+
+.logoHelper {
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.logoImg {
+  vertical-align: middle;
+  height: 85vmin;
+  width: 85vmin;
+}

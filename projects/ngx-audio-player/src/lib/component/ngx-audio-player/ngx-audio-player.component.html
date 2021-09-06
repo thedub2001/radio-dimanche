@@ -1,9 +1,9 @@
 <mat-card class="ngx-d-flex ngx-justify-content-center ngx-audio-player z-depth-1 mat-elevation-z2 miniplayer-mat-card"
-    style="margin: 0px;">
+    style="margin: 0px;" color="accent">
 
     <audio #audioPlayer [src]="tracks[currentIndex]?.link"></audio>
 
-    <button *ngIf="tracks.length > 1" (click)='previousSong();' [disabled]="loaderDisplay" class="ngx-p-1 miniplayer-mat-button" mat-button>
+    <button *ngIf="tracks.length > 1" (click)='previousSong();' color="primary" [disabled]="loaderDisplay" class="ngx-p-1 miniplayer-mat-button" mat-button>
         <mat-icon aria-hidden="true" class="miniplayer-mat-icon">
             <!-- Skip previous icon (skip_previous) -->
             <svg class="miniplayer-svg" height="32" viewBox="0 0 24 24" width="32" xmlns="http://www.w3.org/2000/svg">
@@ -12,7 +12,7 @@
             </svg>
         </mat-icon>
     </button>
-    <button (click)='playBtnHandler();' [disabled]="loaderDisplay" class="ngx-p-1 play-pause miniplayer-mat-button" mat-button>
+    <button (click)='playBtnHandler();' color="primary" [disabled]="loaderDisplay" class="ngx-p-1 play-pause miniplayer-mat-button" mat-button>
 
         <svg class="miniplayer-svg" *ngIf="loaderDisplay" height="34px" preserveAspectRatio="xMidYMid"
             style="margin: auto; display: block; shape-rendering: auto;" viewBox="0 0 100 100" width="34px"
@@ -106,7 +106,7 @@
             </svg>
         </mat-icon>
     </button>
-    <button *ngIf="tracks.length > 1" (click)='nextSong();' [disabled]="loaderDisplay" class="ngx-p-1 skip-next miniplayer-mat-button"
+    <button *ngIf="tracks.length > 1" color="primary" (click)='nextSong();' [disabled]="loaderDisplay" class="ngx-p-1 skip-next miniplayer-mat-button"
         mat-button>
         <mat-icon aria-hidden="true" class="next-track miniplayer-mat-icon">
             <!-- Skip next icon (skip_next) -->
@@ -142,7 +142,7 @@
             </div>
         </div>
     </div>
-    <button (click)='toggleRepeat();' *ngIf="displayRepeatControls" class="ngx-p-1 volume justify-content-center miniplayer-mat-button"
+    <button (click)='toggleRepeat();' color="primary" *ngIf="displayRepeatControls" class="ngx-p-1 volume justify-content-center miniplayer-mat-button"
         mat-button>
         <mat-icon *ngIf="repeat === 'none'" aria-hidden="true" class="volume-mute justify-content-center miniplayer-mat-icon">
             <!-- Repeat None -->
@@ -180,7 +180,7 @@
         </mat-icon>
     </button>
     <div cdkOverlayOrigin #trigger="cdkOverlayOrigin">
-        <button (click)='isOpen =true;' *ngIf="displayVolumeControls" class="ngx-p-1 volume miniplayer-mat-button"  mat-button>
+        <button (click)='isOpen =true;' *ngIf="displayVolumeControls" color="primary" class="ngx-p-1 volume miniplayer-mat-button"  mat-button>
             <mat-icon *ngIf="volume === 0" aria-hidden="true" class="volume-mute miniplayer-mat-icon">
                 <!-- Volume mute icon (volume_off) -->
                 <svg class="miniplayer-svg" height="28" viewBox="0 0 24 24" width="28" xmlns="http://www.w3.org/2000/svg">

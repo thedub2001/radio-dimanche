@@ -1,22 +1,35 @@
-<mat-tab-group class="footer-dependant" [selectedIndex]="tabIndex" (selectedIndexChange)="tabIndex=$event">
+
+<div class=logoFrame>
+  <span class="logoHelper"></span>
+  <img class="logoImg" [@vinylAnim]="currentState"  (@vinylAnim.done)='captureDoneEvent($event)' src="../assets/img/radio-dimanche-logo-text.svg" />
+</div>
+
+<div [@overlayFadeOut]="overlayState" (@overlayFadeOut.done)="overlayState='visible'" >
+</div>
+
+<mat-tab-group class="footer-dependant" [selectedIndex]="tabIndex" (selectedIndexChange)="tabIndex=$event" backgroundColor="accent">
   <mat-tab label="Radio">
 
     <div 	style="margin-top:10%;">
 
         <mat-grid-list cols="3" rowHeight="200px">  
             <mat-grid-tile>
+              <button mat-icon-button color="primary" class='middle-button'>
                 <mat-icon (click)="ngxAudioPlayerPrevious()" class='middle-icon'>fast_rewind</mat-icon>
+              </button>
             </mat-grid-tile>
             <mat-grid-tile>
-                <div *ngIf="loaded">
+                <button *ngIf="loaded" mat-icon-button color="primary" class='big-button'>
                     <mat-icon *ngIf="pause" (click)="ngxAudioPlayerPlay()" class='big-icon'>play_circle</mat-icon>
                     <mat-icon *ngIf="play" (click)="ngxAudioPlayerPlay()" class='big-icon'>pause_circle</mat-icon>
-                </div>
+                </button>
                 
                 <mat-spinner *ngIf="!loaded"></mat-spinner>
             </mat-grid-tile>
             <mat-grid-tile>
+              <button mat-icon-button color="primary" class='middle-button'>
                 <mat-icon (click)="ngxAudioPlayerNext()" class='middle-icon'>fast_forward</mat-icon>
+              </button>
             </mat-grid-tile>
         </mat-grid-list>
         {{currentTrack.title}}<br>

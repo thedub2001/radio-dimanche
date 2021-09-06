@@ -7,7 +7,7 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic&amp;subset=latin-ext');
 
 @import '~@angular/material/theming';
-@debug ""; // empty line for better console reading
+// @debug ""; // empty line for better console reading
 
 // Plus imports for other components in your app.
 
@@ -211,8 +211,75 @@ $mat-example: (
   )
 );
 
-$example-primary: mat-palette($mat-grey-example);
-$example-accent:  mat-palette($mat-example, A200, A100, A400);
+
+$dimanche-rose: (
+    50 : #ffffff,
+    100 : #fcf0f3,
+    200 : #f2c2ce,
+    300 : #e587a0,
+    400 : #df6e8c,
+    500 : #da5578,
+    600 : #d53c64,
+    700 : #c72b54,
+    800 : #ad2649,
+    900 : #94203f,
+    A100 : #ffffff,
+    A200 : #fdcbd8,
+    A400 : #ef7394,
+    A700 : #e36586,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$dimanche-jaune: (
+    50 : #ffffff,
+    100 : #ffffff,
+    200 : #fdf8d4,
+    300 : #f9ee90,
+    400 : #f8e973,
+    500 : #f6e556,
+    600 : #f4e139,
+    700 : #f3dc1c,
+    800 : #e4cd0c,
+    900 : #c7b30b,
+    A100 : #ffffff,
+    A200 : #fffce6,
+    A400 : #fff280,
+    A700 : #fbec6a,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #000000,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$example-primary: mat-palette($dimanche-rose,500);
+$example-accent:  mat-palette($dimanche-jaune, 800, 700, 900);
 
 // The warn palette is optional (defaults to red).
 $example-warn:    mat-palette($mat-red);
@@ -220,11 +287,13 @@ $example-warn:    mat-palette($mat-red);
 // Create the theme object (a Sass map containing all of the palettes).
 $example-theme: mat-light-theme($example-primary, $example-accent, $example-warn);
 
+
+
 // Set custom background color
 $custom-background-color: map_get($mat-blue-grey, 50);
 
 // -or- Can set colour by hex value too
-$custom-background-color: #628cc9;
+$custom-background-color: #EEEEEE;
 
 $background: map-get($example-theme, background);
 
@@ -233,6 +302,8 @@ $background: map_merge($background, (background: $custom-background-color));
 $example-theme: map_merge($example-theme, (background: $background));
 
 // To apply the background to the whole app : just put the classes on your body or app: <body class="mat-typography mat-app-background"> (https://github.com/angular/components/issues/6244#issuecomment-591390543)
+
+
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
