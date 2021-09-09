@@ -32,14 +32,26 @@
               </button>
             </mat-grid-tile>
         </mat-grid-list>
-        {{currentTrack.title}}<br>
-        {{currentTrack.artist}}<br>
-        <div *ngIf="sc.dataSource[currentIndex]">
-          Playlist : {{sc.dataSource[currentIndex].playlistTitle}}     
-          <button mat-icon-button class="more-button" (click)="detailActivated=true;changeTabIndex(1);" [routerLink]="['playlist',sc.dataSource[currentIndex].playlistTitle]">
-            <mat-icon>navigate_next</mat-icon>
-          </button>
-        </div>
+
+        <mat-grid-list cols="3" rowHeight="100px">
+          <mat-grid-tile>
+            <img mat-card-image *ngIf="sc.dataSource[currentIndex]" style="height: inherit;width: auto;margin-top:auto;"  src="{{sc.dataSource[currentIndex].artwork_url}}" >
+          </mat-grid-tile>
+          <mat-grid-tile>
+            {{currentTrack.title}}<br>
+            {{currentTrack.artist}}<br>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <div *ngIf="sc.dataSource[currentIndex]">
+              Playlist : {{sc.dataSource[currentIndex].playlistTitle}}     
+              <button mat-icon-button class="more-button" (click)="detailActivated=true;changeTabIndex(1);" [routerLink]="['playlist',sc.dataSource[currentIndex].playlistTitle]">
+                <mat-icon>navigate_next</mat-icon>
+              </button>
+            </div>
+          </mat-grid-tile>
+        </mat-grid-list>
+
+
 
       </div>
   </mat-tab>
@@ -74,9 +86,9 @@
               </mat-card-header>
                 <!--         <div class="image-container" routerLink="/testgrid"  style="cursor:pointer"> -->
               
-                  <div class="image-container" [routerLink]="['playlist', element.title]" (click)="detailActivated=true;" style="cursor:pointer" >          
-                <img mat-card-image src="{{element.artwork_url}}" style="width: 100%;margin-left:auto;">
-              </div>
+                <div class="image-container" [routerLink]="['playlist', element.title]" (click)="detailActivated=true;" style="cursor:pointer" >          
+                  <img mat-card-image src="{{element.artwork_url}}" style="width: 100%;margin-left:auto;">
+                </div>
       
               <mat-card-content class="dashboard-card-content">
                 <div>Nombre de titres <br/>Date dernier ajout

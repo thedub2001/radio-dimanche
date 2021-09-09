@@ -13,7 +13,8 @@ export interface SoundcloudData {
     duration:number,
     stream_url:string,
     title:string,
-    user:{username:string}
+    user:{username:string},
+    artwork_url:string
   }
 ]
 }
@@ -25,7 +26,8 @@ export interface playlistTracksData {
       duration:number,
       stream_url:string,
       title:string,
-      user:{username:string}
+      user:{username:string},
+      artwork_url:string
     }
   ];
 }
@@ -58,7 +60,8 @@ export class SoundcloudService {
             link:value.stream_url+'?client_id=31478aadfa8f9db41f03ffb13b43a57d',
             duration:value.duration,
             artist:value.user.username,
-            playlistTitle:playlistTitle
+            playlistTitle:playlistTitle,
+            artwork_url:value.artwork_url
           })
         },this);
 
@@ -100,6 +103,7 @@ export class SoundcloudService {
       rObj["key"] = obj.id;
       rObj["link"] = obj.stream_url+'?client_id=31478aadfa8f9db41f03ffb13b43a57d';
       rObj["artist"] = obj.user.username;
+      rObj["artwork_url"] = obj.artwork_url;
       rObj["duration"] = this.secondsToHms(obj.duration/1000);
       rObj["playlistTitle"] = playlistName;
 

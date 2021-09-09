@@ -61,6 +61,7 @@ import { EmptyComponent } from './empty/empty.component';
 import { NgxAudioPlayerModule } from 'ngx-audio-player';
 import {OverlayModule} from '@angular/cdk/overlay';
 import { DialogPlaylistComponent } from './dialog-playlist/dialog-playlist.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 
@@ -100,6 +101,7 @@ import { DialogPlaylistComponent } from './dialog-playlist/dialog-playlist.compo
     MatFormFieldModule,
     NgxAudioPlayerModule,
     OverlayModule,
+    FontAwesomeModule,
   ],
   providers:[
     FirebaseService,
