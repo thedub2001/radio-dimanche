@@ -18,7 +18,7 @@ import {trigger,state,style,animate,transition} from "@angular/animations";
       state(
         "initial",
         style({
-          zIndex: "3",
+          zIndex: "4",
           position : "relative",
 
         })
@@ -27,7 +27,7 @@ import {trigger,state,style,animate,transition} from "@angular/animations";
         "0",
         style({
           transform: "rotate(360deg)",
-          zIndex: "3",
+          zIndex: "4",
           position : "relative",
 
 
@@ -37,7 +37,7 @@ import {trigger,state,style,animate,transition} from "@angular/animations";
         "1",
         style({
           transform: "rotate(540deg)",
-          zIndex: "3",
+          zIndex: "4",
           position : "relative",
 
         })
@@ -46,7 +46,7 @@ import {trigger,state,style,animate,transition} from "@angular/animations";
         "2",
         style({
           transform: "rotate(720deg)",
-          zIndex: "3",
+          zIndex: "4",
           position : "relative",
           display :"none",
           opacity : "0",
@@ -71,7 +71,7 @@ import {trigger,state,style,animate,transition} from "@angular/animations";
           right: "0",
           bottom: "0",
           backgroundColor: "#eeeeee",
-          zIndex: "2",
+          zIndex: "3",
           cursor: "pointer",
         })
       ),
@@ -88,7 +88,7 @@ import {trigger,state,style,animate,transition} from "@angular/animations";
           bottom: "0",
           backgroundColor: "#eeeeee",
           opacity : "0",
-          zIndex: "2",
+          zIndex: "3",
           cursor: "pointer",
 
         })
