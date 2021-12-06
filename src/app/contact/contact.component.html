@@ -1,53 +1,11 @@
 <h1 class="mat-headline">Contact</h1>
 
-<div #pRef *ngIf="viewIsReady">
-  <div *ngFor="let getter of widgetGetters">
-    {{getter}} value : {{this.SC.widget1[getter].value}}
-  </div>
-
-</div>
-
-  <button mat-icon-button color="primary" class='middle-button'>
-    <mat-icon (click)="test02()" class='middle-icon'>fast_rewind</mat-icon>
-  </button>
-  <button mat-icon-button color="primary" class='middle-button'>
-    <mat-icon (click)="test03()" class='middle-icon'>fast_forward</mat-icon>
-  </button>
-
-<!--   <button mat-icon-button color="primary" class='middle-button'>
-    <mat-icon (click)="widgetCall.function('play')" class='middle-icon'>play_circle</mat-icon>
-  </button>   -->
-  <button mat-icon-button color="primary" class='middle-button'>
-    <mat-icon (click)="SC.widget1.play()" class='middle-icon'>play_arrow</mat-icon>
-  </button>
-
-  <button mat-icon-button color="primary" class='middle-button'>
-    <mat-icon (click)="SC.event.pause(1)" class='middle-icon'>pause_circle</mat-icon>
-  </button>
-  <button mat-icon-button color="primary" class='middle-button'>
-    <mat-icon (click)="loadWidget()" class='middle-icon'>radio</mat-icon>
-  </button>
-
-  <iframe #scFrame id="soundcloud_widget" allow="autoplay"
-  src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/257613835&color=%23b69a7a&auto_play=true&show_teaser=false"
-  width="420"
-  height="120"
-  frameborder="no">
-</iframe>
-
-<iframe #scHidden id="soundcloud_hiddenWidget" hidden
-src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1037073685&color=%23142ef0&auto_play=false&show_teaser=false"
-width="420"
-height="120"
-frameborder="no">
-</iframe>
-
-
 <p class="mat-body-1">Si vous souhaitez nous faire part de vos impressions, déposer un fichier audio ou nous laisser un message : <br>
     <fa-icon [icon]="faFacebookSquare" ></fa-icon> radio-dimanche@facebook.com <br>
     <fa-icon [icon]="faInstagramSquare" ></fa-icon> radio-dimanche@instagram.com <br>
     <fa-icon [icon]="faEnvelopeOpenText" ></fa-icon> radio-dimanche@gmail.com <br>
 </p>
+
 <h2 class="mat-title">Podcast</h2>
 Nos créatrices et créateurs seront heureux de répondre à vos commentaires <br><br>
 <h3 class="mat-subheading-2">Micro trottoir</h3>
@@ -66,12 +24,9 @@ Ce site internet est réalisé sous license open-source. Le code est disponible 
 <fa-icon  [icon]="faGithubSquare" ></fa-icon> https://github.com/thedub2001 <br>
 <fa-icon  [icon]="faEnvelopeOpenText" ></fa-icon> thedub2001 at hotmail.com <br><br>
 
-
 <h3 class="mat-subheading-2">subheading-2 (h3) &mdash; 16px normal</h3>
 <h4 class="mat-subheading-1">subheading-1 (h4) &mdash; 15px normal</h4>
 <p class="mat-body-1">body-1 &mdash; 14px normal</p> 
-
-
 
 <fa-icon class="fa-5x" [icon]="faCoffee" ></fa-icon>
 <fa-icon class="fa-5x" [icon]="faFacebookSquare" ></fa-icon>
