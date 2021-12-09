@@ -1,0 +1,130 @@
+.audio-player {
+    display: flex;
+    flex-direction: row;
+}
+
+.cover {
+    min-width: 88px;
+    height: 88px;
+}
+.cover img {
+    display: block;
+    max-height: 100%;
+    margin: 0 auto;
+}
+
+.title{
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 100px;
+    padding-left: 17px;
+    overflow: hidden;
+    align-self: center;
+}
+.title-name{
+    line-height: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.title-artist{
+    line-height: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.title-extra{
+    line-height: 15px;
+    color: #b2b2b2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.player {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 350px;
+    margin: auto;
+    position: relative;
+}
+.actions {
+    bottom: 20px;
+    display: flex;
+    width: 100%;
+    position: absolute;
+}
+
+.timeline-values {
+    display: flex;
+    top: 4px;
+    position: relative;
+}
+.play-again {
+    padding-left: 3px;
+    align-self: center;
+    transform: scale(0.8);
+}
+.start-time {
+    position: relative;
+    top: 6px;
+}
+.end-time {
+    margin-left: auto;
+    padding-right: 3px;
+    top: 6px;
+    position: relative;
+}
+.skip-icon {
+    transform: scale(1.5);
+    margin-left: auto;
+    margin-right: auto;
+}
+.play-stop-icon {
+    transform: scale(2);
+    margin-left: auto;
+    margin-right: auto;
+
+}
+.timeline {
+    bottom: -30px;
+    width: 100%;
+    left: 5px;
+    position: absolute;
+}
+
+.controls {
+    display: flex;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 140px;
+    justify-content: flex-end;
+}
+.volume {
+    padding-right: 30%;
+    align-self: center;
+}
+
+
+@media (max-width: 570px) {
+    .cover {
+        min-width: 66px;
+        height: 66px;
+    }
+
+    .title-name, .title-artist, .title-extra, .start-time, .end-time {
+        font-size: 0.8em;
+    }
+    .start-time, .end-time {
+        top: 7px;
+    }
+
+    .play-again {
+        transform: scale(0.6);
+    }
+
+    .actions {
+        bottom: 15px
+    }
+    
+  }

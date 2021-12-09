@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild,HostListener  } from '@angular/core';
 import { AudioPlayerComponent , Track} from 'ngx-audio-player';
-import { SoundcloudService } from '../soundcloud.service';
+// import { SoundcloudService } from '../soundcloud.service';
 import { Router } from '@angular/router';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { map } from 'rxjs/operators';
@@ -121,6 +121,7 @@ export class MainComponent implements AfterViewInit, OnInit  {
   isOpen=false;
   sliderValue=5;
   public tempTest=0;
+  sc = {};
 
 
   msaapDisplayTitle = false;
@@ -137,7 +138,7 @@ export class MainComponent implements AfterViewInit, OnInit  {
   overlayState: string = "hidden";
 
   constructor(
-    public sc : SoundcloudService,
+    //public sc : SoundcloudService,
     public router : Router,
     private breakpointObserver: BreakpointObserver,
     ) {}

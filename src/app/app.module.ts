@@ -62,6 +62,7 @@ import { NgxAudioPlayerModule } from 'ngx-audio-player';
 import {OverlayModule} from '@angular/cdk/overlay';
 import { DialogPlaylistComponent } from './dialog-playlist/dialog-playlist.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AudioPlayerComponent } from './audio-player/audio-player.component';
 
 
 
@@ -128,6 +129,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     LiveComponent,
     EmptyComponent,
     DialogPlaylistComponent,
+    AudioPlayerComponent,
 
   ],
     entryComponents: [

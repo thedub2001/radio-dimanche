@@ -2,10 +2,11 @@
 <div class=logoFrame>
   <span class="logoHelper"></span>
   <img class="logoImg" [@vinylAnim]="currentState"  (@vinylAnim.done)='captureDoneEvent($event)' src="../assets/img/radio-dimanche-logo-text.svg" />
-</div>
+</div> 
 
 <div [@overlayFadeOut]="overlayState" (@overlayFadeOut.done)="overlayState='visible'" >
 </div>
+
 
 <mat-tab-group class="footer-dependant" [selectedIndex]="tabIndex" (selectedIndexChange)="tabIndex=$event" backgroundColor="accent">
   <mat-tab label="Radio">
@@ -35,16 +36,16 @@
 
         <mat-grid-list cols="3" rowHeight="100px">
           <mat-grid-tile>
-            <img mat-card-image *ngIf="sc.dataSource[currentIndex]" style="height: inherit;width: auto;margin-top:auto;"  src="{{sc.dataSource[currentIndex].artwork_url}}" >
+            <img mat-card-image *ngIf="" style="height: inherit;width: auto;margin-top:auto;"  src="" >
           </mat-grid-tile>
           <mat-grid-tile>
             {{currentTrack.title}}<br>
             {{currentTrack.artist}}<br>
           </mat-grid-tile>
           <mat-grid-tile>
-            <div *ngIf="sc.dataSource[currentIndex]">
-              Playlist : {{sc.dataSource[currentIndex].playlistTitle}}     
-              <button mat-icon-button class="more-button" (click)="detailActivated=true;changeTabIndex(1);" [routerLink]="['playlist',sc.dataSource[currentIndex].playlistTitle]">
+            <div *ngIf="">
+              Playlist :      
+              <button mat-icon-button class="more-button" (click)="detailActivated=true;changeTabIndex(1);" [routerLink]="">
                 <mat-icon>navigate_next</mat-icon>
               </button>
             </div>
@@ -65,11 +66,11 @@
 
   <router-outlet></router-outlet>
 
-    <div class="grid-container" *ngIf="sc.soundcloudPlaylists && !detailActivated">
+    <div class="grid-container" *ngIf="!detailActivated">
         <h1 class="mat-h1">Listes de lecture Mixcloud</h1>
         <mat-grid-list cols="4" rowHeight="350px">
                 <!--     <mat-grid-tile *ngFor="let hero of cards | async" > -->
-          <mat-grid-tile *ngFor="let element of sc.soundcloudPlaylists" [colspan]="(isHandset$ | async) ? '4' : '1'" >
+          <mat-grid-tile *ngFor="let element of sc" [colspan]="(isHandset$ | async) ? '4' : '1'" >
             <mat-card class="dashboard-card" style="max-width: 200px;" >
               <mat-card-header>
                 <mat-card-title >
@@ -108,19 +109,13 @@
 <!-- <mat-tab label="LIVE"> Content 5 </mat-tab> -->
 </mat-tab-group>
 
-<!-- <footer fxFlex="52px" fxLayoutAlign="center center" class="footer">
-  <div  id="player" style="position: fixed; left: 0; bottom: 0; right: 0; height: 52px; z-index: 10"> -->
-
-<footer  fxLayoutAlign="center center" class="footer">
-  <div style="position: fixed;left: 0; bottom: 0; right: 0;" id="player">
-    
-    <ngx-audio-player [playlist]="sc.dataSource" [displayTitle]="msaapDisplayTitle" [autoPlay]="false" 
-      muted="muted" [displayPlaylist]="msaapDisplayPlayList" [pageSizeOptions]="msaapPageSizeOptions" (trackEnded)="onEnded($event)"  (trackPlayed)="onPlayed($event)" (trackPaused)="onPaused($event)" (trackLoaded)="onLoaded($event)" (trackLoading)="onLoading($event)"
-      [displayVolumeControls]="msaapDisplayVolumeControls" [displayRepeatControls]="msaapDisplayRepeatControls"
-      [disablePositionSlider]="msaapDisablePositionSlider" [displayArtist]="msaapDisplayArtist" 
-      [displayDuration]="msaapDisplayDuration" [expanded]="true">
-    </ngx-audio-player> 
-      
-  </div>
+<footer>
 </footer>
+
+<div style="position: fixed;left: 0; bottom: 0; right: 0;" id="player">
+    
+  <app-audio-player [title]="true">
+  </app-audio-player> 
+    
+</div>
 
