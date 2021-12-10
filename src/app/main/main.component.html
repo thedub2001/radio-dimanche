@@ -1,4 +1,3 @@
-
 <div class=logoFrame>
   <span class="logoHelper"></span>
   <img class="logoImg" [@vinylAnim]="currentState"  (@vinylAnim.done)='captureDoneEvent($event)' src="../assets/img/radio-dimanche-logo-text.svg" />
@@ -15,20 +14,20 @@
         <mat-grid-list cols="3" rowHeight="200px">  
             <mat-grid-tile>
               <button mat-icon-button color="primary" class='middle-button'>
-                <mat-icon (click)="ngxAudioPlayerPrevious()" class='middle-icon'>fast_rewind</mat-icon>
+                <mat-icon  class='middle-icon'>fast_rewind</mat-icon>
               </button>
             </mat-grid-tile>
             <mat-grid-tile>
                 <button *ngIf="loaded" mat-icon-button color="primary" class='big-button'>
-                    <mat-icon *ngIf="pause" (click)="ngxAudioPlayerPlay()" class='big-icon'>play_circle</mat-icon>
-                    <mat-icon *ngIf="play" (click)="ngxAudioPlayerPlay()" class='big-icon'>pause_circle</mat-icon>
+                    <mat-icon *ngIf="pause" class='big-icon'>play_circle</mat-icon>
+                    <mat-icon *ngIf="play" class='big-icon'>pause_circle</mat-icon>
                 </button>
                 
                 <mat-spinner *ngIf="!loaded"></mat-spinner>
             </mat-grid-tile>
             <mat-grid-tile>
               <button mat-icon-button color="primary" class='middle-button'>
-                <mat-icon (click)="ngxAudioPlayerNext()" class='middle-icon'>fast_forward</mat-icon>
+                <mat-icon class='middle-icon'>fast_forward</mat-icon>
               </button>
             </mat-grid-tile>
         </mat-grid-list>
@@ -38,8 +37,8 @@
             <img mat-card-image *ngIf="" style="height: inherit;width: auto;margin-top:auto;"  src="" >
           </mat-grid-tile>
           <mat-grid-tile>
-            {{currentTrack.title}}<br>
-            {{currentTrack.artist}}<br>
+            <br>
+            <br>
           </mat-grid-tile>
           <mat-grid-tile>
             <div *ngIf="">
@@ -50,8 +49,6 @@
             </div>
           </mat-grid-tile>
         </mat-grid-list>
-
-
 
       </div>
   </mat-tab>
@@ -64,41 +61,6 @@
 </nav>
 
   <router-outlet></router-outlet>
-
-    <div class="grid-container" *ngIf="!detailActivated">
-        <h1 class="mat-h1">Listes de lecture Mixcloud</h1>
-        <mat-grid-list cols="4" rowHeight="350px">
-                <!--     <mat-grid-tile *ngFor="let hero of cards | async" > -->
-          <mat-grid-tile *ngFor="let element of sc" [colspan]="(isHandset$ | async) ? '4' : '1'" >
-            <mat-card class="dashboard-card" style="max-width: 200px;" >
-              <mat-card-header>
-                <mat-card-title >
-                  {{element.title}}
-                  <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
-                    <mat-icon>more_vert</mat-icon>
-                  </button>
-                  <mat-menu #menu="matMenu" xPosition="before">
-                    <button mat-menu-item>Expand</button>
-                    <button mat-menu-item>Remove</button>
-                  </mat-menu>
-                </mat-card-title>
-      
-              </mat-card-header>
-                <!--         <div class="image-container" routerLink="/testgrid"  style="cursor:pointer"> -->
-              
-                <div class="image-container" [routerLink]="['playlist', element.title]" (click)="detailActivated=true;" style="cursor:pointer" >          
-                  <img mat-card-image src="{{element.artwork_url}}" style="width: 100%;margin-left:auto;">
-                </div>
-      
-              <mat-card-content class="dashboard-card-content">
-                <div>Nombre de titres <br/>Date dernier ajout
-                </div>
-              </mat-card-content>
-            </mat-card>
-          </mat-grid-tile>
-      
-        </mat-grid-list>
-    </div>
 
 </mat-tab>
 <mat-tab label="A propos"> <app-about></app-about> </mat-tab>
