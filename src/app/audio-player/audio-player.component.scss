@@ -112,6 +112,10 @@
         height: 66px;
     }
 
+    .title {
+        flex-basis: 150px;
+    }
+
     .title-name, .title-artist, .title-extra, .start-time, .end-time {
         font-size: 0.8em;
     }

@@ -3,22 +3,23 @@
         <img src="https://cdn.radiofrance.fr/s3/cruiser-production/2019/10/5b265fe3-5bd2-49c6-85fa-97c2a830ba7a/200x200_rf_omm_0000954715_dnc.0056994241.jpg">
     </div>
     <div class="title">
-        <div class="title-name">Titre</div>
-        <div class="title-artist">Nom de l'artiste</div>
-        <div class="title-extra">Nom de la playlist</div>
+        <div class="title-name">{{title}}</div>
+        <div class="title-artist">{{artist}}</div>
+        <div class="title-extra">{{extra}}</div>
     </div>
     <div class="player">
         <div class="actions">
-            <mat-icon class="skip-icon">skip_previous</mat-icon>
-            <mat-icon class="play-stop-icon">play_arrow</mat-icon>
-            <mat-icon class="skip-icon">skip_next</mat-icon>
+            <mat-icon class="skip-icon" *ngIf="playlist">skip_previous</mat-icon>
+            <mat-icon class="play-stop-icon" *ngIf="!playing">play_arrow</mat-icon>
+            <mat-icon class="play-stop-icon" *ngIf="playing">stop</mat-icon>
+            <mat-icon class="skip-icon" *ngIf="playlist">skip_next</mat-icon>
         </div>
         <div class="timeline-values">
             <mat-icon class="play-again">replay</mat-icon>
-            <span class="start-time">00:00</span>
-            <span class="end-time">05:23</span>
+            <span class="start-time">{{trackTime}}</span>
+            <span class="end-time">{{endTime}}</span>
         </div>
-        <mat-slider class="timeline"></mat-slider>
+        <mat-slider [value]="(trackTime/endTime)*100" class="timeline"></mat-slider>
     </div>
     <div class="controls">
         <mat-icon class="volume">volume_up</mat-icon>

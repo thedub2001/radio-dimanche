@@ -7,7 +7,6 @@
 <div [@overlayFadeOut]="overlayState" (@overlayFadeOut.done)="overlayState='visible'" >
 </div>
 
-
 <mat-tab-group class="footer-dependant" [selectedIndex]="tabIndex" (selectedIndexChange)="tabIndex=$event" backgroundColor="accent">
   <mat-tab label="Radio">
 
@@ -114,7 +113,9 @@
 
 <div style="position: fixed;left: 0; bottom: 0; right: 0;" id="player">
     
-  <app-audio-player [title]="true">
+  <app-audio-player [title]="currentTitle" [artist]="currentArtist" [extra]="currentExtra" 
+  [endTime]="currentEndTime" [trackTime]="currentTrackTime" [playing]="isPlaying" 
+  [playlist]="isPlaylist" [volume]="currentVolume" >
   </app-audio-player> 
     
 </div>
