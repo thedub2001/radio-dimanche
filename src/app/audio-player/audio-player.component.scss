@@ -55,6 +55,11 @@
     position: absolute;
 }
 
+.action-buttons {
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .timeline-values {
     display: flex;
     top: 4px;
@@ -77,22 +82,17 @@
 }
 .skip-icon {
     transform: scale(1.5);
-    margin-left: auto;
-    margin-right: auto;
 }
 .play-stop-icon {
     transform: scale(2);
-    margin-left: auto;
-    margin-right: auto;
-
 }
+
 .timeline {
     bottom: -30px;
     width: 100%;
     left: 5px;
     position: absolute;
 }
-
 .controls {
     display: flex;
     flex-grow: 1;
@@ -125,6 +125,7 @@
 
     .play-again {
         transform: scale(0.6);
+        z-index: 1;
     }
 
     .actions {

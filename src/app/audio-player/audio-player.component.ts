@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-audio-player',
@@ -12,8 +12,20 @@ export class AudioPlayerComponent implements OnInit {
   @Input() playing : boolean = false;
   @Input() playlist : boolean = false;
   @Input() volume : number = 100;
-  @Input() endTime : number = 1527;
-  @Input() trackTime : number = 250;
+  @Input() endTime : string = "99:99";
+  @Input() trackTime : string = "88:88";
+  @Input() sliderPosition : number = 50;
+  @Input() imageUrl : string = "";
+  @Input() playlistUrl : string = "";
+// TO DO : Add a button wich links to playlistUrl in the player 
+
+
+  @Output() play = new EventEmitter<string>();
+  @Output() pause = new EventEmitter<string>();
+  @Output() prev = new EventEmitter<string>();
+  @Output() next = new EventEmitter<string>();
+  @Output() replay = new EventEmitter<string>();
+  @Output() seekTo = new EventEmitter<string>();
 
   constructor() { }
 

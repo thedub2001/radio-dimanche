@@ -1,8 +1,10 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild,HostListener  } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild,HostListener, Renderer2  } from '@angular/core';
 import { Router } from '@angular/router';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { map } from 'rxjs/operators';
 import { vinylAnimation, fadeoutAnimation } from "./animation";
+import * as widgetAPI from "./widgetAPI";
+
 
 @Component({
   selector: 'app-main',
@@ -12,8 +14,6 @@ import { vinylAnimation, fadeoutAnimation } from "./animation";
 })
 
 export class MainComponent implements AfterViewInit, OnInit  {
-  @ViewChild('jsconsole') jsconsole: ElementRef;
-  @ViewChild('playlist') playlist: ElementRef;
   
   isHandset$= this.breakpointObserver.observe(Breakpoints.Handset)
   .pipe(
@@ -28,39 +28,91 @@ export class MainComponent implements AfterViewInit, OnInit  {
   isOpen=false;
   sliderValue=5;
   public tempTest=0;
-  sc = {};
 
   currentIndex: number;
   tabIndex : number = 0;
   currentState:string = "initial";
   overlayState: string = "hidden";
 
-  currentTitle = "Oregon VS Katmandou";
-  currentArtist = "James Lee";
-  currentExtra = "@1954 records";
-  currentEndTime = 1245;
-  currentTrackTime = 230;
+  currentTitle : string = "";
+  currentArtist : string = "";
+  currentExtra : string = "Extra info";
+  currentEndTime : string = "00:00";
+  currentEndTimeMillis: number = 0;
+  currentTrackTime : string = "00:00";
+  currentSliderPosition : number = 0;
+  currentImageUrl : string = "";
   isPlaying = false;
   isPlaylist = true;
   currentVolume = 100;
+  playProgressTimeout : boolean = false;
+  viewIsReady: boolean = false;
+  SC : any = {};
+
+
+  @ViewChild("scFrame", { static: false }) scFrame!: ElementRef;
+
 
   constructor(
     //public sc : SoundcloudService,
     public router : Router,
     private breakpointObserver: BreakpointObserver,
+    private renderer: Renderer2
     ) {}
 
   ngOnInit(): void {
   }
+  abc(e): void {
+    console.log("abc : ",e);
+  }
 
   ngAfterViewInit(): void {
+    this.viewIsReady = true;
+    widgetAPI.onReceiveWidgetMessage(this.renderer,this.SC);
+    widgetAPI.widgetConstructor(this.scFrame,"widget1",this.SC);
+
+    this.SC.widget1.event.ready.bind = ()=> {
+      //play is fired twice ?!
+      // subscribe to ready event in order to automatic re-subscribe on loading new url !
+      this.SC.widget1.event.play.bind = () => this.isPlaying=true;
+      this.SC.widget1.event.play(1);
+      this.SC.widget1.event.pause.bind = () => this.isPlaying=false;
+      this.SC.widget1.event.pause(1);
+      this.SC.widget1.getDuration.bind = (d) => {
+        this.currentEndTime=widgetAPI.millisecondsToHms(d);
+        this.currentEndTimeMillis = d;
+      }
+      this.SC.widget1.getDuration();
+      this.SC.widget1.event.playProgress.bind = (pp) => {
+        if (!this.playProgressTimeout) {
+          this.playProgressTimeout = true;
+          this.currentTrackTime = widgetAPI.millisecondsToHms(pp.currentPosition);
+          this.currentSliderPosition = pp.relativePosition*100;
+          setTimeout(()=>{
+            this.playProgressTimeout=false;
+          }, 1000)
+        }
+      }
+      this.SC.widget1.event.playProgress(1);
+      this.SC.widget1.getCurrentSound.bind = (cs) => {
+        this.currentImageUrl = cs.artwork_url;
+        this.currentTitle = cs.title;
+        this.currentArtist = cs.artist; // WARNING : cs.artist could be empty;
+        console.log(cs);
+      }
+      this.SC.widget1.getCurrentSound(); // TO DO : getCurrentSound if new song is played --> prev/next/end event...
+    }
+  }
+  // TO DO : add listener for seek to avoid delay in showing postion on mat-slider
+
+  subscribeToPlayProgress() {
+    this.SC.widget1.event.playProgress(1);
   }
   
   navigateToPlaylist(p) : void {
     console.log(p);
     this.router.navigate(['./playlist',p]);
     // TO DO : naviguer jusqu'a la playlist comme [routerLink]="['playlist', element.title]" en html
-    
   }
 
   changeTabIndex(n) : void {

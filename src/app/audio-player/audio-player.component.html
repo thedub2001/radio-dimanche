@@ -1,6 +1,6 @@
 <div class="audio-player">
     <div class="cover">
-        <img src="https://cdn.radiofrance.fr/s3/cruiser-production/2019/10/5b265fe3-5bd2-49c6-85fa-97c2a830ba7a/200x200_rf_omm_0000954715_dnc.0056994241.jpg">
+        <img src={{imageUrl}}>
     </div>
     <div class="title">
         <div class="title-name">{{title}}</div>
@@ -9,17 +9,25 @@
     </div>
     <div class="player">
         <div class="actions">
-            <mat-icon class="skip-icon" *ngIf="playlist">skip_previous</mat-icon>
-            <mat-icon class="play-stop-icon" *ngIf="!playing">play_arrow</mat-icon>
-            <mat-icon class="play-stop-icon" *ngIf="playing">stop</mat-icon>
-            <mat-icon class="skip-icon" *ngIf="playlist">skip_next</mat-icon>
+            <button *ngIf="playlist" mat-icon-button color="primary" class="action-buttons" (click)="this.prev.emit()">
+                <mat-icon class="skip-icon">skip_previous</mat-icon>
+            </button>
+            <button *ngIf="!playing" mat-icon-button color="primary" class="action-buttons" (click)="this.play.emit()">
+                <mat-icon class="play-stop-icon">play_arrow</mat-icon>
+            </button>
+            <button *ngIf="playing" mat-icon-button color="primary" class="action-buttons" (click)="this.pause.emit()">
+                <mat-icon class="play-stop-icon">stop</mat-icon>
+            </button>
+            <button *ngIf="playlist" mat-icon-button color="primary" class="action-buttons" (click)="this.next.emit()">
+                <mat-icon class="skip-icon">skip_next</mat-icon>
+            </button>
         </div>
         <div class="timeline-values">
-            <mat-icon class="play-again">replay</mat-icon>
+            <mat-icon (click)="this.replay.emit()" class="play-again">replay</mat-icon>
             <span class="start-time">{{trackTime}}</span>
             <span class="end-time">{{endTime}}</span>
         </div>
-        <mat-slider [value]="(trackTime/endTime)*100" class="timeline"></mat-slider>
+        <mat-slider [value]="sliderPosition" class="timeline" (change)="this.seekTo.emit($event)"></mat-slider>
     </div>
     <div class="controls">
         <mat-icon class="volume">volume_up</mat-icon>
