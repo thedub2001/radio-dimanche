@@ -4,6 +4,7 @@ import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { map } from 'rxjs/operators';
 import { vinylAnimation, fadeoutAnimation } from "./animation";
 import * as widgetAPI from "./widgetAPI";
+// TO DO : volume widget -> ngx.html, ligne 203
 
 
 @Component({
